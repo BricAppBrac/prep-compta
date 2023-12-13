@@ -98,7 +98,7 @@ const ListeDebits = ({ filteredSecondTable, sourceName }) => {
         compteSelectedArray[index],
         refSelectedArray[index],
         libelleSelectedArray[index],
-        row[1], // Montant
+        row[1] * -1, // Changer le signe du montant
       ];
 
       // Deuxième ligne pour chaque itération
@@ -353,48 +353,51 @@ const ListeDebits = ({ filteredSecondTable, sourceName }) => {
               <h4>Montant: {row[1]} €</h4>
             </div>
             <div className="row-select">
-              <div className="row-compte">
+              <div className="row-libelle">
                 <label>
-                  Compte :
+                  Libellé :
                   <select
-                    name={`compte-${index}`}
+                    name={`libelle-${index}`}
                     defaultValue=""
                     onChange={(e) => {
-                      handleCompte(e.target.value, index);
+                      handleLibelle(e.target.value, index);
                     }}
                     className={
-                      (isOptionCptSelectedArray[index] &&
-                        !isAutreCompteSelectedArray[index]) ||
-                      (isOptionCptSelectedArray[index] &&
-                        isAutreCompteSelectedArray[index] &&
-                        isAutreCompteRenseigneArray[index])
+                      (isOptionLibSelectedArray[index] &&
+                        !isAutreLibelleSelectedArray[index]) ||
+                      (isOptionLibSelectedArray[index] &&
+                        isAutreLibelleSelectedArray[index] &&
+                        isAutreLibelleRenseigneArray[index])
                         ? "option-selected"
                         : ""
                     }
                   >
                     <option value="" disabled>
-                      Choisissez un compte
+                      Choisissez un Libellé
                     </option>
-                    {compteOptions.map((compte, i) => (
-                      <option key={i} value={compte}>
-                        {compte}
-                      </option>
-                    ))}
-                    <option value="Autre">Autre Compte</option>
+                    {row
+                      .slice(3, 8)
+                      .filter(Boolean)
+                      .map((lib, i) => (
+                        <option key={i} value={lib}>
+                          {lib}
+                        </option>
+                      ))}
+                    <option value="Autre">Autre Libellé</option>
                   </select>
                 </label>
-                {isAutreCompteSelectedArray[index] && (
+                {isAutreLibelleSelectedArray[index] && (
                   <input
                     type="text"
-                    name="autreCompte"
-                    id="autreCompte"
-                    placeholder="Nom du compte"
+                    name="autreLibelle"
+                    id="autreLibelle"
+                    placeholder="Libelle"
                     autoComplete="off"
                     onChange={(e) => {
-                      handleAutreCompte(e.target.value, index);
+                      handleAutreLibelle(e.target.value, index);
                     }}
                     className={
-                      isAutreCompteRenseigneArray[index]
+                      isAutreLibelleRenseigneArray[index] === true
                         ? "option-selected"
                         : ""
                     }
@@ -450,51 +453,48 @@ const ListeDebits = ({ filteredSecondTable, sourceName }) => {
                   />
                 )}
               </div>
-              <div className="row-libelle">
+              <div className="row-compte">
                 <label>
-                  Libellé :
+                  Compte :
                   <select
-                    name={`libelle-${index}`}
+                    name={`compte-${index}`}
                     defaultValue=""
                     onChange={(e) => {
-                      handleLibelle(e.target.value, index);
+                      handleCompte(e.target.value, index);
                     }}
                     className={
-                      (isOptionLibSelectedArray[index] &&
-                        !isAutreLibelleSelectedArray[index]) ||
-                      (isOptionLibSelectedArray[index] &&
-                        isAutreLibelleSelectedArray[index] &&
-                        isAutreLibelleRenseigneArray[index])
+                      (isOptionCptSelectedArray[index] &&
+                        !isAutreCompteSelectedArray[index]) ||
+                      (isOptionCptSelectedArray[index] &&
+                        isAutreCompteSelectedArray[index] &&
+                        isAutreCompteRenseigneArray[index])
                         ? "option-selected"
                         : ""
                     }
                   >
                     <option value="" disabled>
-                      Choisissez un Libellé
+                      Choisissez un compte
                     </option>
-                    {row
-                      .slice(3, 8)
-                      .filter(Boolean)
-                      .map((lib, i) => (
-                        <option key={i} value={lib}>
-                          {lib}
-                        </option>
-                      ))}
-                    <option value="Autre">Autre Libellé</option>
+                    {compteOptions.map((compte, i) => (
+                      <option key={i} value={compte}>
+                        {compte}
+                      </option>
+                    ))}
+                    <option value="Autre">Autre Compte</option>
                   </select>
                 </label>
-                {isAutreLibelleSelectedArray[index] && (
+                {isAutreCompteSelectedArray[index] && (
                   <input
                     type="text"
-                    name="autreLibelle"
-                    id="autreLibelle"
-                    placeholder="Libelle"
+                    name="autreCompte"
+                    id="autreCompte"
+                    placeholder="Nom du compte"
                     autoComplete="off"
                     onChange={(e) => {
-                      handleAutreLibelle(e.target.value, index);
+                      handleAutreCompte(e.target.value, index);
                     }}
                     className={
-                      isAutreLibelleRenseigneArray[index] === true
+                      isAutreCompteRenseigneArray[index]
                         ? "option-selected"
                         : ""
                     }

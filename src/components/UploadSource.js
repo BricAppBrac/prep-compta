@@ -8,7 +8,7 @@ const UploadSource = () => {
 
   const [filteredSecondTable, setFilteredSecondTable] = useState([]);
 
-  // Stocke le fichier sélectionné
+  // Stocke le fichier sélectionné url et name
   const handleFileChange = (event) => {
     console.log("handleFileChange");
     const file = event.target.files[0];
@@ -21,14 +21,13 @@ const UploadSource = () => {
     console.log(fileUrl);
   };
 
-  // Fonction pour traiter les données lues du fichier Excel
-  const handleDataRead = (data) => {
+  // Fonction pour traiter les données lues du fichier Csv
+  const handleDataRead = (csvData) => {
     console.log("handleDataRead");
-    console.log("data");
-    console.log(data);
+    console.log("csvData");
+    console.log(csvData);
 
-    // En deuxième lecture, mettre sur la même ligne les informations ref, motif, etc.
-    handleDataSecondRead(data);
+    handleDataSecondRead(csvData);
   };
 
   const isValidDate = (dateString) => {
@@ -45,7 +44,10 @@ const UploadSource = () => {
     let foundNextDate = false;
     let currentDate = null;
 
-    for (let i = 0; i < data.length && i < 1000; i++) {
+    console.log("data.length");
+    console.log(data.length);
+
+    for (let i = 0; i < data.length; i++) {
       // Ignorer les premières lignes jusqu'à la première date
       if (!foundFirstDate && !isValidDate(data[i][0])) {
         console.log("ligne ignorée : " + i + " / " + data[i][0]);
@@ -86,9 +88,11 @@ const UploadSource = () => {
         console.log("suite nvelle ligne");
         console.log(currentRow);
       }
-      if (i === 1000) {
-        console.log("fichier source trop grand ?");
-      }
+    }
+
+    if (!foundFirstDate) {
+      console.log("Aucune date trouvée");
+      return;
     }
 
     // Ajouter la dernière ligne au deuxième tableau
@@ -102,13 +106,14 @@ const UploadSource = () => {
 
     // Filtrer secondTable pour ne conserver que les lignes avec la cellule[1] renseignée (débits)
     const filteredTable = secondTable.filter(
-      (row) => row[1] !== undefined && row[1] !== null && row[1] !== ""
+      (row) =>
+        row[1] !== undefined && row[1] !== null && row[1] !== "" && row[1] !== 0
     );
     setFilteredSecondTable(filteredTable);
-    console.log("secondTable après filtre");
-    console.log(filteredSecondTable);
 
     // Retourner le tableau filtré
+    console.log("filteredSecondTable");
+    console.log(filteredSecondTable);
     return filteredSecondTable;
   };
 
@@ -136,7 +141,7 @@ const UploadSource = () => {
               </div>
             ) : (
               <div className="upload-file">
-                <input type="file" accept=".xlsx" onChange={handleFileChange} />
+                <input type="file" accept=".csv" onChange={handleFileChange} />
               </div>
             )}
           </h3>

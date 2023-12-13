@@ -1,75 +1,66 @@
 import { useEffect, useCallback } from "react";
-import * as XLSX from "xlsx";
+import Papa from "papaparse";
+import { TextDecoder } from "text-encoding";
 
 const ReadSource = ({ fileUrl, handleDataRead }) => {
   console.log("ReadSource");
   console.log("fileUrl : " + fileUrl);
 
-  const readExcelFile = useCallback(
-    (url) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open("GET", url, true);
-      xhr.responseType = "arraybuffer";
+  const readCsvFile = useCallback(
+    async (url) => {
+      try {
+        const response = await fetch(url);
 
-      xhr.onload = (e) => {
-        const arraybuffer = xhr.response;
-        const data = new Uint8Array(arraybuffer);
-        const workbook = XLSX.read(data, { type: "array" });
+        // Convertir la réponse en tableau de bytes
+        const buffer = await response.arrayBuffer();
 
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
+        // Utiliser TextDecoder pour convertir les bytes en chaîne de texte
+        const text = new TextDecoder().decode(buffer);
 
-        // Convertir le contenu de la feuille en tableau JSON
-        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-        // Modifier les données pour traiter les dates
-        const formattedData = jsonData
-          .filter((row) =>
-            row.some((cell) => typeof cell === "string" && cell.trim() !== "")
-          ) // Supprimer les lignes vides
-          .map((row) =>
-            row.map((cell, columnIndex) =>
-              columnIndex === 0 && isDateCell(cell)
-                ? convertToFormattedDate(cell)
-                : cell
-            )
-          );
+        // Utilisation de papaparse pour traiter le fichier CSV
+        const parsedData = await new Promise((resolve) => {
+          Papa.parse(text, {
+            header: false,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+            complete: (results) => resolve(results.data),
+            error: (error) =>
+              console.error("Erreur lors de l'analyse CSV :", error),
+            transform: (value, header) => {
+              // Ajouter des conversions personnalisées si nécessaire
+              if (header === 2 || header === 3) {
+                // Colonne 3 et 4 : Convertir en nombre si possible
+                console.log("value:", value);
+                const numberValue = parseFloat(
+                  value.toString().replace(",", ".")
+                );
+                return isNaN(numberValue) ? value : numberValue;
+              }
+              // Ajoutez d'autres conversions personnalisées au besoin
+              return value;
+            },
+          });
+        });
 
         // Appeler la fonction fournie pour transmettre les données à un autre composant
-        handleDataRead(formattedData);
-      };
-
-      xhr.send();
+        handleDataRead(parsedData);
+      } catch (error) {
+        console.error("Erreur lors de la lecture du fichier CSV :", error);
+      }
     },
     [handleDataRead]
   );
+  // eslint-disable-next-line
+  const memoizedReadCsvFile = useCallback(readCsvFile, []);
 
   useEffect(() => {
     if (fileUrl) {
-      readExcelFile(fileUrl);
+      memoizedReadCsvFile(fileUrl);
     }
-  }, [fileUrl, readExcelFile]);
-
-  const isDateCell = (value) => {
-    // Vérifier si la valeur est un nombre (format de numéro de série pour les dates)
-    if (typeof value === "number") {
-      // Utiliser une méthode de JavaScript pour vérifier si la valeur est une date valide
-      const dateObject = new Date((value - 1) * 24 * 60 * 60 * 1000);
-      return !isNaN(dateObject.getTime());
-    }
-    return false;
-  };
-
-  const convertToFormattedDate = (value) => {
-    // Convertir le numéro de série en date format JJ/MM/YYYY
-    const dateObject = new Date((value - 25569) * 86400 * 1000); // 25569 est l'offset pour le 1er janvier 1970
-    const day = dateObject.getDate();
-    const month = dateObject.getMonth() + 1;
-    const year = dateObject.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
+  }, [fileUrl, memoizedReadCsvFile]);
 
   // Ce composant n'affiche rien à l'écran
   return null;
 };
+
 export default ReadSource;

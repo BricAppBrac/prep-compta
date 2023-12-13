@@ -29,11 +29,7 @@ const Home = () => {
           <UploadSource />
         </div>
       </div>
-      <div className="home-generate-doc">
-        {/* <WriteCsv
-          
-        /> */}
-      </div>
+      <div className="home-generate-doc"></div>
     </div>
   );
 
