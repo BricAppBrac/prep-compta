@@ -109,7 +109,7 @@ const ListeDebits = ({ filteredSecondTable, sourceName }) => {
         refSelectedArray[index],
         libelleSelectedArray[index],
         "",
-        row[1], // Montant
+        row[1] * -1, // Changer le signe du montant
       ];
 
       // Retourner un tableau contenant les deux lignes pour chaque itération
