@@ -1,11 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import * as XLSX from "xlsx";
 
 const ReadSource = ({ fileUrl, handleDataRead }) => {
   console.log("ReadSource");
   console.log("fileUrl : " + fileUrl);
-
-  const [setTableData] = useState([]);
 
   const readExcelFile = useCallback(
     (url) => {
@@ -37,16 +35,13 @@ const ReadSource = ({ fileUrl, handleDataRead }) => {
             )
           );
 
-        // Stocker les données dans l'état local
-        setTableData(formattedData);
-
         // Appeler la fonction fournie pour transmettre les données à un autre composant
         handleDataRead(formattedData);
       };
 
       xhr.send();
     },
-    [handleDataRead, setTableData]
+    [handleDataRead]
   );
 
   useEffect(() => {

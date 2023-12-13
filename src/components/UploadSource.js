@@ -5,7 +5,7 @@ import ListeDebits from "../components/ListeDebits";
 const UploadSource = () => {
   const [sourceName, setSourceName] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
-  const [setTableData] = useState([]);
+
   const [filteredSecondTable, setFilteredSecondTable] = useState([]);
 
   // Stocke le fichier sélectionné
@@ -26,8 +26,7 @@ const UploadSource = () => {
     console.log("handleDataRead");
     console.log("data");
     console.log(data);
-    // résultat de la 1ère lecture du fichier source
-    setTableData(data);
+
     // En deuxième lecture, mettre sur la même ligne les informations ref, motif, etc.
     handleDataSecondRead(data);
   };
