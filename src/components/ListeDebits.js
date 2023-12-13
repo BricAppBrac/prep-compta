@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import Papa from "papaparse";
 
-const ListeDebits = ({ filteredSecondTable }) => {
+const ListeDebits = ({ filteredSecondTable, sourceName }) => {
   console.log("ListeDebits");
   console.log("filteredSecondTable");
   console.log(filteredSecondTable);
   let compteOptions = ["401000", "401001", "421001", "425000", "431000"];
 
   const [messageInfo, setMessageInfo] = useState("");
+
+  const [prepCsvArray, setPrepCsvArray] = useState([]);
 
   // VALEURS SELECTIONNEES OU SAISIES
   const [compteSelectedArray, setCompteSelectedArray] = useState(
@@ -76,10 +79,64 @@ const ListeDebits = ({ filteredSecondTable }) => {
     });
 
     if (allIndicatorsAreOK) {
-      setMessageInfo("⚠️ Toutes les valeurs ont été saisies");
+      setMessageInfo("");
+      handlePrepCsv();
     } else {
       setMessageInfo("⚠️ Valeurs manquantes");
     }
+  };
+
+  const handlePrepCsv = () => {
+    console.log("handlePrepCsv");
+
+    // Construire le tableau prepCsvArray en utilisant les données nécessaires
+    const newPrepCsvArray = filteredSecondTable.flatMap((row, index) => {
+      // Première ligne pour chaque itération
+      const firstLine = [
+        row[0], // Date
+        "OD",
+        compteSelectedArray[index],
+        refSelectedArray[index],
+        libelleSelectedArray[index],
+        row[1], // Montant
+      ];
+
+      // Deuxième ligne pour chaque itération
+      const secondLine = [
+        row[0], // Date
+        "OD",
+        "512000", // Valeur fixe
+        refSelectedArray[index],
+        libelleSelectedArray[index],
+        "",
+        row[1], // Montant
+      ];
+
+      // Retourner un tableau contenant les deux lignes pour chaque itération
+      return [firstLine, secondLine];
+    });
+
+    setPrepCsvArray(newPrepCsvArray);
+
+    console.log("prepCsvArray");
+    console.log(prepCsvArray);
+
+    // Générer le fichier CSV
+    generateCsv(newPrepCsvArray);
+  };
+  const generateCsv = (data) => {
+    const csv = Papa.unparse(data);
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const csvURL = window.URL.createObjectURL(csvData);
+
+    const fileName = `PrepCompta${sourceName}.csv`;
+
+    const tempLink = document.createElement("a");
+    tempLink.href = csvURL;
+    tempLink.setAttribute("download", fileName);
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    document.body.removeChild(tempLink);
   };
 
   const handleCompte = (compteSelected, index) => {

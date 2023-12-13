@@ -1,17 +1,59 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import * as XLSX from "xlsx";
 
 const ReadSource = ({ fileUrl, handleDataRead }) => {
   console.log("ReadSource");
   console.log("fileUrl : " + fileUrl);
 
-  const [tableData, setTableData] = useState([]);
+  const [setTableData] = useState([]);
+
+  const readExcelFile = useCallback(
+    (url) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.responseType = "arraybuffer";
+
+      xhr.onload = (e) => {
+        const arraybuffer = xhr.response;
+        const data = new Uint8Array(arraybuffer);
+        const workbook = XLSX.read(data, { type: "array" });
+
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+
+        // Convertir le contenu de la feuille en tableau JSON
+        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        // Modifier les données pour traiter les dates
+        const formattedData = jsonData
+          .filter((row) =>
+            row.some((cell) => typeof cell === "string" && cell.trim() !== "")
+          ) // Supprimer les lignes vides
+          .map((row) =>
+            row.map((cell, columnIndex) =>
+              columnIndex === 0 && isDateCell(cell)
+                ? convertToFormattedDate(cell)
+                : cell
+            )
+          );
+
+        // Stocker les données dans l'état local
+        setTableData(formattedData);
+
+        // Appeler la fonction fournie pour transmettre les données à un autre composant
+        handleDataRead(formattedData);
+      };
+
+      xhr.send();
+    },
+    [handleDataRead, setTableData]
+  );
 
   useEffect(() => {
     if (fileUrl) {
       readExcelFile(fileUrl);
     }
-  }, [fileUrl]);
+  }, [fileUrl, readExcelFile]);
 
   const isDateCell = (value) => {
     // Vérifier si la valeur est un nombre (format de numéro de série pour les dates)
@@ -30,46 +72,6 @@ const ReadSource = ({ fileUrl, handleDataRead }) => {
     const month = dateObject.getMonth() + 1;
     const year = dateObject.getFullYear();
     return `${day}/${month}/${year}`;
-  };
-
-  const readExcelFile = (url) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.responseType = "arraybuffer";
-
-    xhr.onload = (e) => {
-      const arraybuffer = xhr.response;
-      const data = new Uint8Array(arraybuffer);
-      const workbook = XLSX.read(data, { type: "array" });
-
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-
-      // Convertir le contenu de la feuille en tableau JSON
-      const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-      // Modifier les données pour traiter les dates
-      const formattedData = jsonData
-        .filter((row) =>
-          row.some((cell) => typeof cell === "string" && cell.trim() !== "")
-        ) // Supprimer les lignes vides
-
-        .map((row) =>
-          row.map((cell, columnIndex) =>
-            columnIndex === 0 && isDateCell(cell)
-              ? convertToFormattedDate(cell)
-              : cell
-          )
-        );
-
-      // Stocker les données dans l'état local
-      setTableData(formattedData);
-
-      // Appeler la fonction fournie pour transmettre les données à un autre composant
-      handleDataRead(formattedData);
-    };
-
-    xhr.send();
   };
 
   // Ce composant n'affiche rien à l'écran

@@ -5,7 +5,7 @@ import ListeDebits from "../components/ListeDebits";
 const UploadSource = () => {
   const [sourceName, setSourceName] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
-  const [tableData, setTableData] = useState([]);
+  const [setTableData] = useState([]);
   const [filteredSecondTable, setFilteredSecondTable] = useState([]);
 
   // Stocke le fichier sélectionné
@@ -146,7 +146,10 @@ const UploadSource = () => {
       <div className="liste-debits">
         {sourceName && filteredSecondTable ? (
           <div className="liste-content">
-            <ListeDebits filteredSecondTable={filteredSecondTable} />
+            <ListeDebits
+              filteredSecondTable={filteredSecondTable}
+              sourceName={sourceName}
+            />
           </div>
         ) : null}
       </div>
