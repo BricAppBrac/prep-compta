@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import ReadSource from "../components/ReadSource";
 import ListeDebits from "../components/ListeDebits";
+import ListeCredits from "./ListeCredits";
 
 const UploadSource = () => {
   const [sourceName, setSourceName] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
 
-  const [filteredSecondTable, setFilteredSecondTable] = useState([]);
+  const [debitsTable, setDebitsTable] = useState([]);
+  const [creditsTable, setCreditsTable] = useState([]);
 
   // Stocke le fichier sélectionné url et name
   const handleFileChange = (event) => {
@@ -38,6 +40,7 @@ const UploadSource = () => {
   const handleDataSecondRead = (data) => {
     // En deuxième lecture, mettre sur la même ligne les informations ref, motif, etc.
     console.log("handleDataSecondRead");
+    // secondTable contient les débits et les crédits
     const secondTable = [];
     let currentRow = [];
     let foundFirstDate = false;
@@ -99,22 +102,30 @@ const UploadSource = () => {
     if (currentRow.length > 0) {
       secondTable.push(currentRow);
     }
-    // Filtrer le tableau, ne garder que les débits et supprimer la cellule[3]
+    // Filtrer le tableau, ne garder que les débits d'un côté (debitsTable), ne garder que les crédits de l'autre (creditsTable)
 
     console.log("secondTable avant filtre");
     console.log(secondTable);
 
     // Filtrer secondTable pour ne conserver que les lignes avec la cellule[1] renseignée (débits)
-    const filteredTable = secondTable.filter(
+    const filteredDebitsTable = secondTable.filter(
       (row) =>
         row[1] !== undefined && row[1] !== null && row[1] !== "" && row[1] !== 0
     );
-    setFilteredSecondTable(filteredTable);
+    setDebitsTable(filteredDebitsTable);
 
-    // Retourner le tableau filtré
-    console.log("filteredSecondTable");
-    console.log(filteredSecondTable);
-    return filteredSecondTable;
+    // Filtrer secondTable pour ne conserver que les lignes avec la cellule[2] renseignée (crédits)
+    const filteredCreditsTable = secondTable.filter(
+      (row) =>
+        row[2] !== undefined && row[2] !== null && row[2] !== "" && row[2] !== 0
+    );
+    setCreditsTable(filteredCreditsTable);
+
+    // Retourner les deux tableaux filtrés
+    return {
+      debitsTable: filteredDebitsTable,
+      creditsTable: filteredCreditsTable,
+    };
   };
 
   return (
@@ -148,12 +159,17 @@ const UploadSource = () => {
         </div>
       </div>
       <div className="liste-debits">
-        {sourceName && filteredSecondTable ? (
+        {sourceName && debitsTable ? (
           <div className="liste-content">
-            <ListeDebits
-              filteredSecondTable={filteredSecondTable}
-              sourceName={sourceName}
-            />
+            <ListeDebits debitsTable={debitsTable} sourceName={sourceName} />
+          </div>
+        ) : null}
+      </div>
+
+      <div className="liste-credits">
+        {sourceName && creditsTable ? (
+          <div className="liste-content">
+            <ListeCredits creditsTable={creditsTable} sourceName={sourceName} />
           </div>
         ) : null}
       </div>

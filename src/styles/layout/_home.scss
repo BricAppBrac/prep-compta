@@ -25,12 +25,19 @@
     margin: 5px auto;
 
     .upload-content {
-      background: $verylightblue;
-      border-radius: 20px;
-
       .upload-head {
         display: flex;
         flex-direction: row;
+        background: $verylightblue;
+        border-radius: 20px;
+      }
+
+      .liste-debits,
+      .liste-credits {
+        background: $verylightblue;
+        margin-top: 30px;
+        padding: 20px 5px;
+        border-radius: 20px;
       }
 
       .row-title,
@@ -82,6 +89,10 @@
       display: flex;
       flex-direction: row;
       margin-top: 20px;
+
+      h2 {
+        font-size: 1.6rem;
+      }
     }
   }
 }

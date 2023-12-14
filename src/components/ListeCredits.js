@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Papa from "papaparse";
 
-const ListeDebits = ({ debitsTable, sourceName }) => {
-  console.log("ListeDebits");
-  console.log("debitsTable");
-  console.log(debitsTable);
+const ListeCredits = ({ creditsTable, sourceName }) => {
+  console.log("ListeCredits");
+  console.log("creditsTable");
+  console.log(creditsTable);
   let compteOptions = ["401000", "401001", "421001", "425000", "431000"];
 
   const [messageInfo, setMessageInfo] = useState("");
@@ -13,43 +13,43 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
 
   // VALEURS SELECTIONNEES OU SAISIES
   const [compteSelectedArray, setCompteSelectedArray] = useState(
-    debitsTable.map(() => null)
+    creditsTable.map(() => null)
   );
   const [refSelectedArray, setRefSelectedArray] = useState(
-    debitsTable.map(() => null)
+    creditsTable.map(() => null)
   );
   const [libelleSelectedArray, setLibelleSelectedArray] = useState(
-    debitsTable.map(() => null)
+    creditsTable.map(() => null)
   );
 
   // Gestion des Autre : sélections de l'option Autre
   const [isAutreCompteSelectedArray, setIsAutreCompteSelectedArray] = useState(
-    debitsTable.map(() => false)
+    creditsTable.map(() => false)
   );
   const [isAutreRefSelectedArray, setIsAutreRefSelectedArray] = useState(
-    debitsTable.map(() => false)
+    creditsTable.map(() => false)
   );
   const [isAutreLibelleSelectedArray, setIsAutreLibelleSelectedArray] =
-    useState(debitsTable.map(() => false));
+    useState(creditsTable.map(() => false));
 
   // Gestion des Autre : Renseignement de la zone correspondant à Autre
   const [isAutreCompteRenseigneArray, setIsAutreCompteRenseigneArray] =
-    useState(debitsTable.map(() => false));
+    useState(creditsTable.map(() => false));
   const [isAutreRefRenseigneArray, setIsAutreRefRenseigneArray] = useState(
-    debitsTable.map(() => false)
+    creditsTable.map(() => false)
   );
   const [isAutreLibelleRenseigneArray, setIsAutreLibelleRenseigneArray] =
-    useState(debitsTable.map(() => false));
+    useState(creditsTable.map(() => false));
 
   // Gestion de la sélection des options pour chaque ligne
   const [isOptionCptSelectedArray, setIsOptionCptSelectedArray] = useState(
-    debitsTable.map(() => false)
+    creditsTable.map(() => false)
   );
   const [isOptionRefSelectedArray, setIsOptionRefSelectedArray] = useState(
-    debitsTable.map(() => false)
+    creditsTable.map(() => false)
   );
   const [isOptionLibSelectedArray, setIsOptionLibSelectedArray] = useState(
-    debitsTable.map(() => false)
+    creditsTable.map(() => false)
   );
 
   // Fonction pour gérer la soumission du formulaire
@@ -58,7 +58,7 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
     console.log("handleSubmit");
     // Vérifier que toutes les données ont été sélectionnées ou saisies avant d'accepter génération du fichier csv
 
-    const allIndicatorsAreOK = debitsTable.every((row, index) => {
+    const allIndicatorsAreOK = creditsTable.every((row, index) => {
       return (
         (isOptionCptSelectedArray[index] &&
           !isAutreCompteSelectedArray[index]) ||
@@ -90,7 +90,7 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
     console.log("handlePrepCsv");
 
     // Construire le tableau prepCsvArray en utilisant les données nécessaires
-    const newPrepCsvArray = debitsTable.flatMap((row, index) => {
+    const newPrepCsvArray = creditsTable.flatMap((row, index) => {
       // Première ligne pour chaque itération
       const firstLine = [
         row[0], // Date
@@ -98,7 +98,8 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
         compteSelectedArray[index],
         refSelectedArray[index],
         libelleSelectedArray[index],
-        row[1] * -1, // Changer le signe du montant
+        "",
+        row[2], // Montant
       ];
 
       // Deuxième ligne pour chaque itération
@@ -108,8 +109,7 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
         "512000", // Valeur fixe
         refSelectedArray[index],
         libelleSelectedArray[index],
-        "",
-        row[1] * -1, // Changer le signe du montant
+        row[2], // Montant
       ];
 
       // Retourner un tableau contenant les deux lignes pour chaque itération
@@ -129,7 +129,7 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const csvURL = window.URL.createObjectURL(csvData);
 
-    const fileName = `PrepComptaDebits${sourceName}.csv`;
+    const fileName = `PrepComptaCredits${sourceName}.csv`;
 
     const tempLink = document.createElement("a");
     tempLink.href = csvURL;
@@ -341,16 +341,16 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
 
   return (
     <div>
-      <h2>Liste des Débits</h2>
+      <h2>Liste des Crédits</h2>
       <form onSubmit={handleSubmit}>
-        {debitsTable.map((row, index) => (
+        {creditsTable.map((row, index) => (
           <div key={index} className="debit-row">
             <h4>
               ************************************************************************************************************************
             </h4>
             <div className="row-title">
               <h4>Date: {row[0]}</h4>
-              <h4>Montant: {row[1]} €</h4>
+              <h4>Montant: {row[2]} €</h4>
             </div>
             <div className="row-select">
               <div className="row-libelle">
@@ -507,7 +507,7 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
         <p>{messageInfo ? messageInfo : null}</p>
         <div className="form-submit">
           <h2>***</h2>
-          <h2>Générer le fichier .CSV des DEBITS</h2>
+          <h2>Générer le fichier .CSV des CREDITS</h2>
           <button type="submit">Soumettre</button>
         </div>
       </form>
@@ -515,4 +515,4 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
   );
 };
 
-export default ListeDebits;
+export default ListeCredits;
