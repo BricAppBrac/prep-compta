@@ -31,8 +31,12 @@ const ReadSource = ({ fileUrl, handleDataRead }) => {
               if (header === 2 || header === 3) {
                 // Colonne 3 et 4 : Convertir en nombre si possible
                 console.log("value:", value);
+
+                // Supprimer les espaces comme séparateur de milliers
+                const formattedValue = value.toString().replace(/\s/g, "");
+
                 const numberValue = parseFloat(
-                  value.toString().replace(",", ".")
+                  formattedValue.replace(",", ".")
                 );
                 return isNaN(numberValue) ? value : numberValue;
               }
@@ -43,6 +47,8 @@ const ReadSource = ({ fileUrl, handleDataRead }) => {
         });
 
         // Appeler la fonction fournie pour transmettre les données à un autre composant
+        console.log("READ SOURCE parsedData");
+        console.log(parsedData);
         handleDataRead(parsedData);
       } catch (error) {
         console.error("Erreur lors de la lecture du fichier CSV :", error);
