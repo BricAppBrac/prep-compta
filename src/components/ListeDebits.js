@@ -5,7 +5,22 @@ const ListeDebits = ({ debitsTable, sourceName }) => {
   console.log("ListeDebits");
   console.log("debitsTable");
   console.log(debitsTable);
-  let compteOptions = ["401000", "401001", "421001", "425000", "431000"];
+  let compteOptions = [
+    "401000",
+    "401001",
+    "421001",
+    "425000",
+    "431000",
+    "455000",
+    "455500",
+    "445510",
+    "421000",
+    "627100",
+    "616000",
+    "606300",
+    "606400",
+    "580000",
+  ];
 
   const [messageInfo, setMessageInfo] = useState("");
 

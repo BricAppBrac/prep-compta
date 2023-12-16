@@ -5,7 +5,14 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
   console.log("ListeCredits");
   console.log("creditsTable");
   console.log(creditsTable);
-  let compteOptions = ["401000", "401001", "421001", "425000", "431000"];
+  let compteOptions = [
+    "401000",
+    "401001",
+    "421001",
+    "425000",
+    "431000",
+    "411EXP",
+  ];
 
   const [messageInfo, setMessageInfo] = useState("");
 
