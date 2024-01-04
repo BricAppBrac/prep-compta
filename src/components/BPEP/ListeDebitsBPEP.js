@@ -1,91 +1,129 @@
 import React, { useState } from "react";
 import Papa from "papaparse";
 
-const ListeCredits = ({ creditsTable, sourceName }) => {
-  console.log("ListeCredits");
-  console.log("creditsTable");
-  console.log(creditsTable);
+const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
+  console.log("ListeDebitsBPEP");
+  console.log("debitsTable");
+  console.log(debitsTable);
   let compteOptions = [
     "401000",
     "401001",
-    "421001",
-    "425000",
-    "431000",
-    "411EXP",
-    "411077",
+    "401CED",
+    "401EXC",
+    "401EXP",
+    "401JMS",
+    "401LEG",
+    "401PLA",
+    "401PPC",
+    "401RIC",
+    "401SID",
+    "408100",
     "4114FG",
-    "411A3P",
     "411ABM",
-    "411AEC",
-    "411AMB",
-    "411APP",
     "411ATI",
-    "411AVA",
-    "411BAL",
     "411BON",
     "411BOU",
     "411BTB",
     "411CAP",
-    "411CEN",
     "411CES",
     "411CHA",
-    "411CHO",
     "411CI2",
     "411CIT",
     "411COG",
-    "411CON",
     "411DAB",
     "411DIF",
     "411ESP",
-    "411EVO",
-    "411EXC",
     "411FOL",
     "411FON",
     "411FRA",
     "411GAG",
-    "411GES",
     "411GON",
-    "411GOT",
-    "411GRA",
-    "411HAU",
-    "411IML",
-    "411IMM",
     "411JUL",
     "411JUN",
     "411JUP",
-    "411KOR",
     "411LCB",
-    "411MBS",
-    "411MOB",
     "411MUL",
     "411MUS",
     "411MYH",
-    "411NEX",
-    "411ORP",
     "411PAR",
-    "411PDL",
-    "411PER",
     "411PIC",
     "411PLU",
     "411POR",
-    "411PRE",
     "411PRI",
-    "411QUA",
-    "411RCI",
-    "411REM",
-    "411REP",
     "411RLM",
-    "411ROM",
     "411ROS",
     "411SAG",
     "411SAL",
-    "411SFI",
-    "411SIM",
     "411SQA",
     "411SQV",
     "411TAR",
-    "411WAT",
-    "411WEL",
+    "416000",
+    "419800",
+    "421001",
+    "428610",
+    "431000",
+    "442100",
+    "445620",
+    "445660",
+    "445661",
+    "445670",
+    "445710",
+    "445720",
+    "445771",
+    "455003",
+    "455004",
+    "455005",
+    "455006",
+    "455100",
+    "486000",
+    "491000",
+    "607100",
+    "611010",
+    "611030",
+    "611035",
+    "613200",
+    "613510",
+    "613520",
+    "613530",
+    "613531",
+    "613532",
+    "615200",
+    "615600",
+    "615610",
+    "616000",
+    "616100",
+    "616300",
+    "616310",
+    "616400",
+    "621100",
+    "622620",
+    "622700",
+    "623200",
+    "623300",
+    "623400",
+    "623450",
+    "623500",
+    "625100",
+    "625200",
+    "625700",
+    "626100",
+    "627100",
+    "627105",
+    "627110",
+    "628100",
+    "628200",
+    "633500",
+    "641000",
+    "641010",
+    "645000",
+    "647500",
+    "648000",
+    "648110",
+    "648200",
+    "658000",
+    "661110",
+    "671000",
+    "671200",
   ];
 
   const [messageInfo, setMessageInfo] = useState("");
@@ -94,43 +132,37 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
 
   // VALEURS SELECTIONNEES OU SAISIES
   const [compteSelectedArray, setCompteSelectedArray] = useState(
-    creditsTable.map(() => null)
+    debitsTable.map(() => null)
   );
-  const [refSelectedArray, setRefSelectedArray] = useState(
-    creditsTable.map(() => null)
-  );
+  // const [refSelectedArray, setRefSelectedArray] = useState(
+  //   debitsTable.map(() => null)
+  // );
   const [libelleSelectedArray, setLibelleSelectedArray] = useState(
-    creditsTable.map(() => null)
+    debitsTable.map(() => null)
   );
 
   // Gestion des Autre : sélections de l'option Autre
   const [isAutreCompteSelectedArray, setIsAutreCompteSelectedArray] = useState(
-    creditsTable.map(() => false)
+    debitsTable.map(() => false)
   );
-  const [isAutreRefSelectedArray, setIsAutreRefSelectedArray] = useState(
-    creditsTable.map(() => false)
-  );
+  const [isAutreRefSelectedArray] = useState(debitsTable.map(() => false));
   const [isAutreLibelleSelectedArray, setIsAutreLibelleSelectedArray] =
-    useState(creditsTable.map(() => false));
+    useState(debitsTable.map(() => false));
 
   // Gestion des Autre : Renseignement de la zone correspondant à Autre
   const [isAutreCompteRenseigneArray, setIsAutreCompteRenseigneArray] =
-    useState(creditsTable.map(() => false));
-  const [isAutreRefRenseigneArray, setIsAutreRefRenseigneArray] = useState(
-    creditsTable.map(() => false)
-  );
+    useState(debitsTable.map(() => false));
+  const [isAutreRefRenseigneArray] = useState(debitsTable.map(() => false));
   const [isAutreLibelleRenseigneArray, setIsAutreLibelleRenseigneArray] =
-    useState(creditsTable.map(() => false));
+    useState(debitsTable.map(() => false));
 
   // Gestion de la sélection des options pour chaque ligne
   const [isOptionCptSelectedArray, setIsOptionCptSelectedArray] = useState(
-    creditsTable.map(() => false)
+    debitsTable.map(() => false)
   );
-  const [isOptionRefSelectedArray, setIsOptionRefSelectedArray] = useState(
-    creditsTable.map(() => false)
-  );
+  const [isOptionRefSelectedArray] = useState(debitsTable.map(() => false));
   const [isOptionLibSelectedArray, setIsOptionLibSelectedArray] = useState(
-    creditsTable.map(() => false)
+    debitsTable.map(() => false)
   );
 
   // Fonction pour gérer la soumission du formulaire
@@ -139,7 +171,7 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
     console.log("handleSubmit");
     // Vérifier que toutes les données ont été sélectionnées ou saisies avant d'accepter génération du fichier csv
 
-    const allIndicatorsAreOK = creditsTable.every((row, index) => {
+    const allIndicatorsAreOK = debitsTable.every((row, index) => {
       return (
         (isOptionCptSelectedArray[index] &&
           !isAutreCompteSelectedArray[index]) ||
@@ -171,26 +203,26 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
     console.log("handlePrepCsv");
 
     // Construire le tableau prepCsvArray en utilisant les données nécessaires
-    const newPrepCsvArray = creditsTable.flatMap((row, index) => {
+    const newPrepCsvArray = debitsTable.flatMap((row, index) => {
       // Première ligne pour chaque itération
       const firstLine = [
         row[0], // Date
         "OD",
         compteSelectedArray[index],
-        refSelectedArray[index],
+        "BP",
         libelleSelectedArray[index],
-        "",
-        row[2], // Montant
+        row[1] * -1, // Changer le signe du montant
       ];
 
       // Deuxième ligne pour chaque itération
       const secondLine = [
         row[0], // Date
         "OD",
-        "512000", // Valeur fixe
-        refSelectedArray[index],
+        "512005", // Valeur fixe
+        "BP",
         libelleSelectedArray[index],
-        row[2], // Montant
+        "",
+        row[1] * -1, // Changer le signe du montant
       ];
 
       // Retourner un tableau contenant les deux lignes pour chaque itération
@@ -210,7 +242,7 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const csvURL = window.URL.createObjectURL(csvData);
 
-    const fileName = `PrepComptaCredits${sourceName}.csv`;
+    const fileName = `PrepComptaDebits${sourceName}.csv`;
 
     const tempLink = document.createElement("a");
     tempLink.href = csvURL;
@@ -265,44 +297,44 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
     }
   };
 
-  const handleRef = (refSelected, index) => {
-    console.log("handleRef");
-    // Stockage de la valeur sélectionnée
-    setRefSelectedArray((prevState) => {
-      const newState = [...prevState];
-      newState[index] = refSelected;
-      return newState;
-    });
+  // const handleRef = (refSelected, index) => {
+  //   console.log("handleRef");
+  //   // Stockage de la valeur sélectionnée
+  //   setRefSelectedArray((prevState) => {
+  //     const newState = [...prevState];
+  //     newState[index] = refSelected;
+  //     return newState;
+  //   });
 
-    // Indicateur select effectué
-    setIsOptionRefSelectedArray((prevState) => {
-      const newState = [...prevState];
-      newState[index] = true;
-      return newState;
-    });
+  //   // Indicateur select effectué
+  //   setIsOptionRefSelectedArray((prevState) => {
+  //     const newState = [...prevState];
+  //     newState[index] = true;
+  //     return newState;
+  //   });
 
-    if (refSelected !== "Autre") {
-      setIsAutreRefSelectedArray((prevState) => {
-        const newState = [...prevState];
-        newState[index] = false;
-        return newState;
-      });
-      setIsAutreRefRenseigneArray((prevState) => {
-        const newState = [...prevState];
-        newState[index] = false;
-        return newState;
-      });
-    }
-    // Activer le champ de texte si "Autre" est sélectionné
-    // setIsAutreRefSelected(refSelected === "Autre");
-    if (refSelected === "Autre") {
-      setIsAutreRefSelectedArray((prevState) => {
-        const newState = [...prevState];
-        newState[index] = true;
-        return newState;
-      });
-    }
-  };
+  //   if (refSelected !== "Autre") {
+  //     setIsAutreRefSelectedArray((prevState) => {
+  //       const newState = [...prevState];
+  //       newState[index] = false;
+  //       return newState;
+  //     });
+  //     setIsAutreRefRenseigneArray((prevState) => {
+  //       const newState = [...prevState];
+  //       newState[index] = false;
+  //       return newState;
+  //     });
+  //   }
+  //   // Activer le champ de texte si "Autre" est sélectionné
+  //   // setIsAutreRefSelected(refSelected === "Autre");
+  //   if (refSelected === "Autre") {
+  //     setIsAutreRefSelectedArray((prevState) => {
+  //       const newState = [...prevState];
+  //       newState[index] = true;
+  //       return newState;
+  //     });
+  //   }
+  // };
 
   const handleLibelle = (libelleSelected, index) => {
     console.log("handleLibelle");
@@ -371,29 +403,29 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
     }
   };
 
-  const handleAutreRef = (refInput, index) => {
-    console.log("handleAutreRef :" + refInput);
-    // Stockage de la valeur saisie
-    setRefSelectedArray((prevState) => {
-      const newState = [...prevState];
-      newState[index] = refInput;
-      return newState;
-    });
-    // Indicateur zone autre saisie
-    setIsAutreRefRenseigneArray((prevState) => {
-      const newState = [...prevState];
-      newState[index] = true;
-      return newState;
-    });
+  // const handleAutreRef = (refInput, index) => {
+  //   console.log("handleAutreRef :" + refInput);
+  //   // Stockage de la valeur saisie
+  //   setRefSelectedArray((prevState) => {
+  //     const newState = [...prevState];
+  //     newState[index] = refInput;
+  //     return newState;
+  //   });
+  //   // Indicateur zone autre saisie
+  //   setIsAutreRefRenseigneArray((prevState) => {
+  //     const newState = [...prevState];
+  //     newState[index] = true;
+  //     return newState;
+  //   });
 
-    if (refInput === "" || refInput === null) {
-      setIsAutreRefRenseigneArray((prevState) => {
-        const newState = [...prevState];
-        newState[index] = false;
-        return newState;
-      });
-    }
-  };
+  //   if (refInput === "" || refInput === null) {
+  //     setIsAutreRefRenseigneArray((prevState) => {
+  //       const newState = [...prevState];
+  //       newState[index] = false;
+  //       return newState;
+  //     });
+  //   }
+  // };
 
   const handleAutreLibelle = (libelleInput, index) => {
     console.log("handleAutreLibelle :");
@@ -422,16 +454,16 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
 
   return (
     <div>
-      <h2>Liste des Crédits</h2>
+      <h2>Liste des Débits</h2>
       <form onSubmit={handleSubmit}>
-        {creditsTable.map((row, index) => (
+        {debitsTable.map((row, index) => (
           <div key={index} className="debit-row">
             <h4>
               ************************************************************************************************************************
             </h4>
             <div className="row-title">
               <h4>Date: {row[0]}</h4>
-              <h4>Montant: {row[2]} €</h4>
+              <h4>Montant: {row[1]} €</h4>
             </div>
             <div className="row-select">
               <div className="row-libelle">
@@ -456,14 +488,7 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
                     <option value="" disabled>
                       Choisissez un Libellé
                     </option>
-                    {row
-                      .slice(3, 8)
-                      .filter(Boolean)
-                      .map((lib, i) => (
-                        <option key={i} value={lib}>
-                          {lib}
-                        </option>
-                      ))}
+                    <option value={row[2]}>{row[2]}</option>
                     <option value="Autre">Autre Libellé</option>
                   </select>
                 </label>
@@ -485,55 +510,9 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
                   />
                 )}
               </div>
-              <div className="row-ref">
-                <label>
-                  Ref :
-                  <select
-                    name={`ref-${index}`}
-                    defaultValue=""
-                    onChange={(e) => {
-                      handleRef(e.target.value, index);
-                    }}
-                    className={
-                      (isOptionRefSelectedArray[index] &&
-                        !isAutreRefSelectedArray[index]) ||
-                      (isOptionRefSelectedArray[index] &&
-                        isAutreRefSelectedArray[index] &&
-                        isAutreRefRenseigneArray[index])
-                        ? "option-selected"
-                        : ""
-                    }
-                  >
-                    <option value="" disabled>
-                      Choisissez une Référence
-                    </option>
-                    {row
-                      .slice(3, 8)
-                      .filter(Boolean)
-                      .map((ref, i) => (
-                        <option key={i} value={ref}>
-                          {ref}
-                        </option>
-                      ))}
-                    <option value="Autre">Autre Ref</option>
-                  </select>
-                </label>
-                {isAutreRefSelectedArray[index] && (
-                  <input
-                    type="text"
-                    name="autreRef"
-                    id="autreRef"
-                    placeholder="Ref"
-                    autoComplete="off"
-                    onChange={(e) => {
-                      handleAutreRef(e.target.value, index);
-                    }}
-                    className={
-                      isAutreRefRenseigneArray[index] ? "option-selected" : ""
-                    }
-                  />
-                )}
-              </div>
+              {/* <div className="row-ref">
+                <label>Ref : "BP"</label>
+              </div> */}
               <div className="row-compte">
                 <label>
                   Compte :
@@ -588,7 +567,7 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
         <p>{messageInfo ? messageInfo : null}</p>
         <div className="form-submit">
           <h2>***</h2>
-          <h2>Générer le fichier .CSV des CREDITS</h2>
+          <h2>Générer le fichier .CSV des DEBITS</h2>
           <button type="submit">Soumettre</button>
         </div>
       </form>
@@ -596,4 +575,4 @@ const ListeCredits = ({ creditsTable, sourceName }) => {
   );
 };
 
-export default ListeCredits;
+export default ListeDebitsBPEP;

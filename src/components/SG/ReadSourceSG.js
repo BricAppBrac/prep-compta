@@ -2,8 +2,8 @@ import { useEffect, useCallback } from "react";
 import Papa from "papaparse";
 import { TextDecoder } from "text-encoding";
 
-const ReadSource = ({ fileUrl, handleDataRead }) => {
-  console.log("ReadSource");
+const ReadSourceSG = ({ fileUrl, handleDataRead }) => {
+  console.log("ReadSourceSG");
   console.log("fileUrl : " + fileUrl);
 
   const readCsvFile = useCallback(
@@ -69,4 +69,4 @@ const ReadSource = ({ fileUrl, handleDataRead }) => {
   return null;
 };
 
-export default ReadSource;
+export default ReadSourceSG;
