@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReadSourceSG from "../components/SG/ReadSourceSG";
 import ReadSourceBPEP from "../components/BPEP/ReadSourceBPEP";
 import ReadSourceLCL from "../components/LCLJMS/ReadSourceLCL";
+import ReadSourceCIC from "../components/CIC/ReadSourceCIC";
 import ListeDebitsSG from "../components/SG/ListeDebitsSG";
 import ListeCreditsSG from "../components/SG/ListeCreditsSG";
 
@@ -10,6 +11,8 @@ import ListeCreditsBPEP from "../components/BPEP/ListeCreditsBPEP";
 
 import ListeDebitsLCL from "../components/LCLJMS/ListeDebitsLCL";
 import ListeCreditsLCL from "../components/LCLJMS/ListeCreditsLCL";
+import ListeDebitsCIC from "../components/CIC/ListeDebitsCIC";
+import ListeCreditsCIC from "../components/CIC/ListeCreditsCIC";
 
 const UploadSource = () => {
   const [sourceName, setSourceName] = useState(null);
@@ -44,6 +47,8 @@ const UploadSource = () => {
       handleDataSecondReadBP(csvData);
     } else if (sourceType === "LCLJMS") {
       handleDataSecondReadLCL(csvData);
+    } else if (sourceType === "CICBIA") {
+      handleDataSecondReadCIC(csvData);
     }
   };
 
@@ -135,6 +140,10 @@ const UploadSource = () => {
         row[2] !== undefined && row[2] !== null && row[2] !== "" && row[2] !== 0
     );
     setCreditsTable(filteredCreditsTable);
+    console.log("filteredCreditsTable");
+    console.log(filteredCreditsTable);
+    console.log("filteredDebitsTable");
+    console.log(filteredDebitsTable);
 
     // Retourner les deux tableaux filtrés
     return {
@@ -171,17 +180,15 @@ const UploadSource = () => {
     console.log("secondTable avant filtre");
     console.log(secondTable);
 
-    // Filtrer secondTable pour ne conserver que les lignes avec la cellule[1] renseignée (débits)
+    // Filtrer secondTable pour ne conserver que les lignes avec montant < 0 (débits)
     const filteredDebitsTable = secondTable.filter((row) => {
       return (
         row[1] !== undefined && row[1] !== null && !isNaN(row[1]) && row[1] < 0
       );
     });
     setDebitsTable(filteredDebitsTable);
-    console.log("filteredDebitsTable");
-    console.log(filteredDebitsTable);
 
-    // Filtrer secondTable pour ne conserver que les lignes avec la cellule[2] renseignée (crédits)
+    // Filtrer secondTable pour ne conserver que les lignes avec montant >= 0 (crédits)
     const filteredCreditsTable = secondTable.filter((row) => {
       return (
         row[1] !== undefined && row[1] !== null && !isNaN(row[1]) && row[1] >= 0
@@ -190,7 +197,8 @@ const UploadSource = () => {
     setCreditsTable(filteredCreditsTable);
     console.log("filteredCreditsTable");
     console.log(filteredCreditsTable);
-
+    console.log("filteredDebitsTable");
+    console.log(filteredDebitsTable);
     // Retourner les deux tableaux filtrés
     return {
       debitsTable: filteredDebitsTable,
@@ -229,8 +237,6 @@ const UploadSource = () => {
       );
     });
     setDebitsTable(filteredDebitsTable);
-    console.log("filteredDebitsTable");
-    console.log(filteredDebitsTable);
 
     // Filtrer secondTable pour ne conserver que les lignes avec la cellule[2] renseignée (crédits)
     const filteredCreditsTable = secondTable.filter((row) => {
@@ -241,7 +247,68 @@ const UploadSource = () => {
     setCreditsTable(filteredCreditsTable);
     console.log("filteredCreditsTable");
     console.log(filteredCreditsTable);
+    console.log("filteredDebitsTable");
+    console.log(filteredDebitsTable);
+    // Retourner les deux tableaux filtrés
+    return {
+      debitsTable: filteredDebitsTable,
+      creditsTable: filteredCreditsTable,
+    };
+  };
 
+  const handleDataSecondReadCIC = (data) => {
+    // En deuxième lecture, mettre sur la même ligne les informations ref, motif, etc.
+    console.log("handleDataSecondReadCIC");
+    let currentRow = [];
+    // secondTable contient les débits et les crédits
+    const secondTable = [];
+    console.log("secondTable.length");
+    console.log(secondTable.length);
+
+    // boucle jusqu'à data.length - 1 car on ignore la dernière ligne
+    for (let i = 0; i < data.length - 1; i++) {
+      // Ignorer les 13 premières lignes
+      if (i >= 0 && i <= 12) {
+        console.log("ligne ignorée : " + i + " / " + data[i][0]);
+        continue;
+      } else {
+        // Nouvelle ligne date / montant débit / montant crédit / libellé / ref
+        currentRow = [
+          data[i][1],
+          data[i][5] ? data[i][5] : data[i][6],
+          data[i][4],
+          data[i][8],
+        ];
+        console.log("prep nvelle ligne");
+        console.log(currentRow);
+        secondTable.push(currentRow);
+      }
+    }
+
+    // Filtrer le tableau, ne garder que les débits d'un côté (debitsTable), ne garder que les crédits de l'autre (creditsTable)
+
+    console.log("secondTable avant filtre");
+    console.log(secondTable);
+
+    // Filtrer secondTable pour ne conserver que les lignes avec montant < 0 (débits)
+    const filteredDebitsTable = secondTable.filter((row) => {
+      return (
+        row[1] !== undefined && row[1] !== null && !isNaN(row[1]) && row[1] < 0
+      );
+    });
+    setDebitsTable(filteredDebitsTable);
+
+    // Filtrer secondTable pour ne conserver que les lignes avec montant >= 0 (crédits)
+    const filteredCreditsTable = secondTable.filter((row) => {
+      return (
+        row[1] !== undefined && row[1] !== null && !isNaN(row[1]) && row[1] >= 0
+      );
+    });
+    setCreditsTable(filteredCreditsTable);
+    console.log("filteredCreditsTable");
+    console.log(filteredCreditsTable);
+    console.log("filteredDebitsTable");
+    console.log(filteredDebitsTable);
     // Retourner les deux tableaux filtrés
     return {
       debitsTable: filteredDebitsTable,
@@ -265,7 +332,11 @@ const UploadSource = () => {
               <div>{sourceName}</div>
             ) : (
               <div className="upload-file">
-                <input type="file" accept=".csv" onChange={handleFileChange} />
+                <input
+                  type="file"
+                  accept=".csv, .xlsx"
+                  onChange={handleFileChange}
+                />
               </div>
             )}
           </h3>
@@ -284,6 +355,7 @@ const UploadSource = () => {
                 <option value="SGJMS">SG JMS</option>
                 <option value="BPEP">BP Expertise Plomberie</option>
                 <option value="LCLJMS">LCL JMS</option>
+                <option value="CICBIA">CIC BIATECH</option>
               </select>
             ) : (
               <div className="div">
@@ -291,6 +363,7 @@ const UploadSource = () => {
                 {sourceType === "SGJMS" && "SG JMS"}
                 {sourceType === "BPEP" && "BP Expertise Plomberie"}
                 {sourceType === "LCLJMS" && "LCL JMS"}
+                {sourceType === "CICBIA" && "CIC BIATECH"}
               </div>
             )}
           </h3>
@@ -326,6 +399,14 @@ const UploadSource = () => {
                     <ReadSourceLCL
                       fileUrl={fileUrl}
                       handleDataRead={handleDataRead}
+                    />
+                  );
+                case "CICBIA":
+                  return (
+                    <ReadSourceCIC
+                      fileUrl={fileUrl}
+                      handleDataRead={handleDataRead}
+                      sourceType={sourceType}
                     />
                   );
                 default:
@@ -371,6 +452,14 @@ const UploadSource = () => {
                       sourceType={sourceType}
                     />
                   );
+                case "CICBIA":
+                  return (
+                    <ListeDebitsCIC
+                      debitsTable={debitsTable}
+                      sourceName={sourceName}
+                      sourceType={sourceType}
+                    />
+                  );
                 default:
                   return null;
               }
@@ -411,6 +500,14 @@ const UploadSource = () => {
                 case "LCLJMS":
                   return (
                     <ListeCreditsLCL
+                      creditsTable={creditsTable}
+                      sourceName={sourceName}
+                      sourceType={sourceType}
+                    />
+                  );
+                case "CICBIA":
+                  return (
+                    <ListeCreditsCIC
                       creditsTable={creditsTable}
                       sourceName={sourceName}
                       sourceType={sourceType}
