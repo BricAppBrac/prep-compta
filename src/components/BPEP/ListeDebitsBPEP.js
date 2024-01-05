@@ -148,14 +148,14 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
   const [isAutreCompteSelectedArray, setIsAutreCompteSelectedArray] = useState(
     debitsTable.map(() => false)
   );
-  const [isAutreRefSelectedArray] = useState(debitsTable.map(() => false));
+  // const [isAutreRefSelectedArray] = useState(debitsTable.map(() => false));
   const [isAutreLibelleSelectedArray, setIsAutreLibelleSelectedArray] =
     useState(debitsTable.map(() => false));
 
   // Gestion des Autre : Renseignement de la zone correspondant à Autre
   const [isAutreCompteRenseigneArray, setIsAutreCompteRenseigneArray] =
     useState(debitsTable.map(() => false));
-  const [isAutreRefRenseigneArray] = useState(debitsTable.map(() => false));
+  // const [isAutreRefRenseigneArray] = useState(debitsTable.map(() => false));
   const [isAutreLibelleRenseigneArray, setIsAutreLibelleRenseigneArray] =
     useState(debitsTable.map(() => false));
 

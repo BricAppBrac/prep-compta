@@ -148,14 +148,14 @@ const ListeCreditsBPEP = ({ creditsTable, sourceName, sourceType }) => {
   const [isAutreCompteSelectedArray, setIsAutreCompteSelectedArray] = useState(
     creditsTable.map(() => false)
   );
-  const [isAutreRefSelectedArray] = useState(creditsTable.map(() => false));
+  // const [isAutreRefSelectedArray] = useState(creditsTable.map(() => false));
   const [isAutreLibelleSelectedArray, setIsAutreLibelleSelectedArray] =
     useState(creditsTable.map(() => false));
 
   // Gestion des Autre : Renseignement de la zone correspondant à Autre
   const [isAutreCompteRenseigneArray, setIsAutreCompteRenseigneArray] =
     useState(creditsTable.map(() => false));
-  const [isAutreRefRenseigneArray] = useState(creditsTable.map(() => false));
+  // const [isAutreRefRenseigneArray] = useState(creditsTable.map(() => false));
   const [isAutreLibelleRenseigneArray, setIsAutreLibelleRenseigneArray] =
     useState(creditsTable.map(() => false));
 
