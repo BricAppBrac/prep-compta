@@ -124,6 +124,9 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
     "661110",
     "671000",
     "671200",
+    "580000",
+    "164230",
+    "411FOB",
   ];
 
   const [messageInfo, setMessageInfo] = useState("");
@@ -177,12 +180,14 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
           !isAutreCompteSelectedArray[index]) ||
         (isOptionCptSelectedArray[index] &&
           isAutreCompteSelectedArray[index] &&
-          isAutreCompteRenseigneArray[index] &&
-          isOptionRefSelectedArray[index] &&
-          !isAutreRefSelectedArray[index]) ||
+          isAutreCompteRenseigneArray[index]) ||
+        // &&
+        // isOptionRefSelectedArray[index] &&
+        // !isAutreRefSelectedArray[index]
         (isOptionRefSelectedArray[index] &&
-          isAutreRefSelectedArray[index] &&
-          isAutreRefRenseigneArray[index] &&
+          // &&
+          // isAutreRefSelectedArray[index] &&
+          // isAutreRefRenseigneArray[index]
           isOptionLibSelectedArray[index] &&
           !isAutreLibelleSelectedArray[index]) ||
         (isOptionLibSelectedArray[index] &&
