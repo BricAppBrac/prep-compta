@@ -179,21 +179,23 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
 
     const allIndicatorsAreOK = debitsTable.every((row, index) => {
       return (
-        (isOptionCptSelectedArray[index] &&
+        // Compte sélectionné ou saisi
+        ((isOptionCptSelectedArray[index] &&
           !isAutreCompteSelectedArray[index]) ||
-        (isOptionCptSelectedArray[index] &&
-          isAutreCompteSelectedArray[index] &&
-          isAutreCompteRenseigneArray[index] &&
-          isOptionRefSelectedArray[index] &&
-          !isAutreRefSelectedArray[index]) ||
-        (isOptionRefSelectedArray[index] &&
-          isAutreRefSelectedArray[index] &&
-          isAutreRefRenseigneArray[index] &&
-          isOptionLibSelectedArray[index] &&
+          (isOptionCptSelectedArray[index] &&
+            isAutreCompteSelectedArray[index] &&
+            isAutreCompteRenseigneArray[index])) &&
+        // Ref sélectionnée ou saisie
+        ((isOptionRefSelectedArray[index] && !isAutreRefSelectedArray[index]) ||
+          (isOptionRefSelectedArray[index] &&
+            isAutreRefSelectedArray[index] &&
+            isAutreRefRenseigneArray[index])) &&
+        // Lib sélectionné ou saisi
+        ((isOptionLibSelectedArray[index] &&
           !isAutreLibelleSelectedArray[index]) ||
-        (isOptionLibSelectedArray[index] &&
-          isAutreLibelleSelectedArray[index] &&
-          isAutreLibelleRenseigneArray[index])
+          (isOptionLibSelectedArray[index] &&
+            isAutreLibelleSelectedArray[index] &&
+            isAutreLibelleRenseigneArray[index]))
       );
     });
 
