@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: pointer;
 }
 * li {
   list-style: none;
@@ -86,6 +87,9 @@ body h3 {
   margin: 5px auto;
   padding: 5px;
 }
+body .upload-head h3 {
+  margin: 5px 10px;
+}
 body h4 {
   margin: 5px auto;
   padding: 5px;
@@ -108,33 +112,47 @@ body h4 {
   border-radius: 20px;
   font-size: 1.4rem;
   margin: 0 20px;
-  background: rgb(136, 184, 96);
+  background: rgb(193, 220, 171);
   color: rgb(37, 21, 11);
 }
 .home .home-content {
   margin: 5px auto;
 }
-.home .home-content .travaux,
-.home .home-content .materiel {
+.home .home-content .upload-content .upload-head {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  background: rgb(198, 208, 233);
+  border-radius: 20px;
 }
-.home .home-content .travaux,
-.home .home-content .temps-remuneration,
-.home .home-content .coordonnees-client,
-.home .home-content .materiel,
-.home .home-content .messagesFin {
-  margin-bottom: 30px;
+.home .home-content .upload-content .liste-debits,
+.home .home-content .upload-content .liste-credits {
+  background: rgb(198, 208, 233);
+  margin-top: 30px;
+  padding: 20px 5px;
+  border-radius: 20px;
 }
-.home .home-content .image label {
-  font-size: 1.2rem;
+.home .home-content .upload-content .row-title,
+.home .home-content .upload-content .row-select {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
 }
-.home .home-content input {
-  font-size: 1.2rem;
+.home .home-content input,
+.home .home-content select {
+  font-size: 1.1rem;
   font-family: Comic, sans-serif;
-  width: 500px;
-  margin-bottom: 10px;
+  max-width: 400px;
+  margin: 5px 10px;
   height: 50px;
+}
+.home .home-content select {
+  background-color: rgb(214, 86, 48);
+}
+.home .home-content .option-selected {
+  background-color: rgb(193, 220, 171);
+}
+.home .home-content .default-selected {
+  background-color: rgb(40, 75, 35);
 }
 .home .home-content button {
   font-size: 1.2rem;
@@ -143,37 +161,22 @@ body h4 {
   background: rgb(168, 10, 29);
   color: wheat;
   margin: 0 10px;
+  text-align: center;
 }
 .home .home-content p {
-  font-size: 1rem;
+  font-size: 1.4rem;
+  margin: 15px;
   padding: 5px;
-  text-align: left;
+  color: white;
+  background-color: rgb(168, 10, 29);
+  text-align: center;
+  border-radius: 20px;
 }
-
-.generate-content {
-  margin: 20px;
+.home .home-content .form-submit {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  margin-top: 20px;
 }
-.generate-content p {
-  font-size: 1.4rem;
-  color: rgb(37, 21, 11);
-  background: rgb(214, 86, 48);
-  padding: 5px;
-  margin: 15px auto;
-  text-align: center;
-  border-radius: 20px;
-}
-.generate-content .generate-button {
-  text-align: center;
-}
-.generate-content .generate-button button {
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 5px;
-  border-radius: 20px;
-  font-size: 1.4rem;
-  margin: 0 20px;
-  background: rgb(136, 184, 96);
-  color: rgb(37, 21, 11);
+.home .home-content .form-submit h2 {
+  font-size: 1.6rem;
 }/*# sourceMappingURL=index.css.map */

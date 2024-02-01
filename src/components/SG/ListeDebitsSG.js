@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 
 const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
@@ -6,6 +6,8 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
   console.log("debitsTable");
   console.log(debitsTable);
   let compteOptionsSGEP = [
+    "164100",
+    "164220",
     "401000",
     "401001",
     "401CED",
@@ -206,7 +208,6 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
     "411TAR",
     "411WAT",
     "411WEL",
-    "401000",
     "411000",
     "411EXP",
     "421000",
@@ -306,9 +307,11 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
   const [prepCsvArray, setPrepCsvArray] = useState([]);
 
   // VALEURS SELECTIONNEES OU SAISIES
+
   const [compteSelectedArray, setCompteSelectedArray] = useState(
     debitsTable.map(() => null)
   );
+
   const [refSelectedArray, setRefSelectedArray] = useState(
     debitsTable.map(() => null)
   );
@@ -336,9 +339,11 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
     useState(debitsTable.map(() => false));
 
   // Gestion de la sélection des options pour chaque ligne
+
   const [isOptionCptSelectedArray, setIsOptionCptSelectedArray] = useState(
     debitsTable.map(() => false)
   );
+
   const [isOptionRefSelectedArray, setIsOptionRefSelectedArray] = useState(
     debitsTable.map(() => false)
   );
@@ -489,6 +494,178 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
+    // Test pour initialisation du compte
+    if (
+      (refSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
+        refSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
+        refSelected.toLowerCase().includes("URSSAF".toLowerCase()) ||
+        refSelected.toLowerCase().includes("DGFIP".toLowerCase()) ||
+        refSelected.toLowerCase().includes("ABONNT".toLowerCase()) ||
+        refSelected.toLowerCase().includes("CION MOUVEMENT".toLowerCase()) ||
+        refSelected.toLowerCase().includes("BPIFRANCE".toLowerCase()) ||
+        refSelected.toLowerCase().includes("MMA IARD".toLowerCase()) ||
+        refSelected.toLowerCase().includes("JAZZPRO".toLowerCase()) ||
+        refSelected.includes("221168100944") ||
+        refSelected.toLowerCase().includes("salaire".toLowerCase()) ||
+        refSelected.toLowerCase().includes("TETRIS".toLowerCase()) ||
+        refSelected.toLowerCase().includes("AGIPI".toLowerCase()) ||
+        refSelected.toLowerCase().includes("blicko lyon".toLowerCase()) ||
+        refSelected.toLowerCase().includes("allart".toLowerCase()) ||
+        refSelected.toLowerCase().includes("gharbit".toLowerCase()) ||
+        refSelected.toLowerCase().includes("remise cb") ||
+        refSelected
+          .toLowerCase()
+          .includes("TOTALENERGIES DEVELOP".toLowerCase())) &&
+      sourceType === "SGEP"
+    ) {
+      if (
+        refSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
+        refSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
+        refSelected.toLowerCase().includes("URSSAF".toLowerCase()) ||
+        refSelected.toLowerCase().includes("DGFIP".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "431000";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        refSelected.toLowerCase().includes("ABONNT".toLowerCase()) ||
+        refSelected.toLowerCase().includes("CION MOUVEMENT".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        refSelected.toLowerCase().includes("allart".toLowerCase()) ||
+        refSelected.toLowerCase().includes("gharbit".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401001";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("BPIFRANCE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "661110";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("MMA IARD".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "666000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("JAZZPRO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.includes("221168100944")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164100";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("salaire".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "421001";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("TETRIS".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616100";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("AGIPI".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616400";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("blicko lyon".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455100";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("remise cb")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PAR";
+          return newState;
+        });
+      }
+
+      //////
+      if (
+        refSelected
+          .toLowerCase()
+          .includes("TOTALENERGIES DEVELOP".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164220";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
     // Indicateur select effectué
     setIsOptionRefSelectedArray((prevState) => {
       const newState = [...prevState];
@@ -527,6 +704,180 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       newState[index] = libelleSelected;
       return newState;
     });
+
+    // Test pour initialisation du compte
+    if (
+      (libelleSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("URSSAF".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("DGFIP".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("ABONNT".toLowerCase()) ||
+        libelleSelected
+          .toLowerCase()
+          .includes("CION MOUVEMENT".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("BPIFRANCE".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("MMA IARD".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("JAZZPRO".toLowerCase()) ||
+        libelleSelected.includes("221168100944") ||
+        libelleSelected.toLowerCase().includes("salaire".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("TETRIS".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("AGIPI".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("blicko lyon".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("allart".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("gharbit".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("REMISE CB".toLowerCase()) ||
+        libelleSelected
+          .toLowerCase()
+          .includes("TOTALENERGIES DEVELOP".toLowerCase())) &&
+      sourceType === "SGEP"
+    ) {
+      if (
+        libelleSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("URSSAF".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("DGFIP".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "431000";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        libelleSelected.toLowerCase().includes("ABONNT".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("CION MOUVEMENT".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        libelleSelected.toLowerCase().includes("allart") ||
+        libelleSelected.toLowerCase().includes("gharbit")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401001";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("BPIFRANCE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "661110";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("MMA IARD".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "666000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("JAZZPRO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.includes("221168100944")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164100";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("salaire".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "421001";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("TETRIS".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616100";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("AGIPI".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616400";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("blicko lyon".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455100";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("REMISE CB".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PAR";
+          return newState;
+        });
+      }
+
+      //////
+      if (
+        libelleSelected
+          .toLowerCase()
+          .includes("TOTALENERGIES DEVELOP".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164220";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
 
     // Indicateur select effectué
     setIsOptionLibSelectedArray((prevState) => {
@@ -634,6 +985,16 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       });
     }
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setCompteSelectedArray(
+      debitsTable.map(() => (sourceType === "SGEP" ? "401000" : null))
+    );
+    setIsOptionCptSelectedArray(
+      debitsTable.map(() => (sourceType === "SGEP" ? true : false))
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debitsTable]);
 
   return (
     <div>
@@ -755,22 +1116,29 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
                   <select
                     name={`compte-${index}`}
                     defaultValue=""
+                    // value={compteSelectedArray[index]}
                     onChange={(e) => {
                       handleCompte(e.target.value, index);
                     }}
                     className={
-                      (isOptionCptSelectedArray[index] &&
-                        !isAutreCompteSelectedArray[index]) ||
-                      (isOptionCptSelectedArray[index] &&
-                        isAutreCompteSelectedArray[index] &&
-                        isAutreCompteRenseigneArray[index])
+                      compteSelectedArray[index] === "401000"
+                        ? "default-selected"
+                        : (isOptionCptSelectedArray[index] &&
+                            !isAutreCompteSelectedArray[index]) ||
+                          (isOptionCptSelectedArray[index] &&
+                            isAutreCompteSelectedArray[index] &&
+                            isAutreCompteRenseigneArray[index])
                         ? "option-selected"
                         : ""
                     }
                   >
-                    <option value="" disabled>
-                      Choisissez un compte
+                    {/* <option value="">Choisissez un compte</option> */}
+                    <option value="">
+                      {sourceType === "SGEP" && compteSelectedArray[index]
+                        ? compteSelectedArray[index]
+                        : "Choisissez un compte"}
                     </option>
+
                     {compteOptions.map((compte, i) => (
                       <option key={i} value={compte}>
                         {compte}

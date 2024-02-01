@@ -25,19 +25,24 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
     "411BOU",
     "411BTB",
     "411CAP",
+    "411CBT",
     "411CES",
     "411CHA",
     "411CI2",
     "411CIT",
+    "411CIV",
     "411COG",
     "411DAB",
     "411DIF",
     "411ESP",
+    "411FOB",
     "411FOL",
     "411FON",
     "411FRA",
     "411GAG",
+    "411GES",
     "411GON",
+    "411IMM",
     "411JUL",
     "411JUN",
     "411JUP",
@@ -52,6 +57,7 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
     "411PRI",
     "411RLM",
     "411ROS",
+    "411SAB",
     "411SAG",
     "411SAL",
     "411SQA",
@@ -301,9 +307,6 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       break;
   }
 
-  console.log("comptesOptions");
-  console.log(compteOptions);
-
   const [messageInfo, setMessageInfo] = useState("");
 
   const [prepCsvArray, setPrepCsvArray] = useState([]);
@@ -492,6 +495,254 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       return newState;
     });
 
+    // Test pour initialisation du compte
+    if (
+      (refSelected.toLowerCase().includes("bouscasse".toLowerCase()) ||
+        refSelected.toLowerCase().includes("bouvet".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Brotteaux".toLowerCase()) ||
+        refSelected.toLowerCase().includes("CACEI".toLowerCase()) ||
+        refSelected.toLowerCase().includes("capsa".toLowerCase()) ||
+        refSelected.toLowerCase().includes("cesar".toLowerCase()) ||
+        refSelected.toLowerCase().includes("CHQ".toLowerCase()) ||
+        refSelected.toLowerCase().includes("dabreteau".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Dify".toLowerCase()) ||
+        refSelected.toLowerCase().includes("G.S.I".toLowerCase()) ||
+        refSelected.toLowerCase().includes("G2G".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Gestion Immo Lyon".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Immokalis".toLowerCase()) ||
+        refSelected.toLowerCase().includes("lumiere".toLowerCase()) ||
+        refSelected.toLowerCase().includes("MODICA".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Multi".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Multisimo".toLowerCase()) ||
+        refSelected.toLowerCase().includes("NUOVA".toLowerCase()) ||
+        refSelected.toLowerCase().includes("PayPal".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Primogest".toLowerCase()) ||
+        refSelected.toLowerCase().includes("Remise CB".toLowerCase()) ||
+        refSelected.toLowerCase().includes("RHONE SAONE".toLowerCase()) ||
+        refSelected.toLowerCase().includes("SAB IMMO".toLowerCase()) ||
+        refSelected.toLowerCase().includes("SAGNIMORTE".toLowerCase()) ||
+        refSelected.toLowerCase().includes("SORBIERS".toLowerCase())) &&
+      sourceType === "SGEP"
+    ) {
+      console.log("CAS CRITERE DETECTE");
+      console.log("refSelected");
+      console.log(refSelected);
+      if (
+        refSelected.toLowerCase().includes("CHQ".toLowerCase()) ||
+        refSelected.toLowerCase().includes("PayPal".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PAR";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        refSelected.toLowerCase().includes("Primogest".toLowerCase()) ||
+        refSelected.toLowerCase().includes("RHONE SAONE".toLowerCase()) ||
+        refSelected.toLowerCase().includes("SORBIERS".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PRI";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("bouscasse".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411BOU";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("bouvet")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411FOB";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("brotteaux")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ESP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("cacei")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SQA";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("capsa")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CAP";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("cesar")) {
+        console.log("cesar");
+        console.log(refSelected);
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CES";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("dabreteau")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DAB";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("dify")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DIF";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("g.s.i")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411GAG";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("g2g")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411GON";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("gestion immo lyon")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411GES";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("immokalis")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411IMM";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("lumiere")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CIV";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("modica")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ROS";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("multi")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411MUL";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("nuova")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411POR";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("remise cb")) {
+        console.log("REMISE CB");
+        console.log(refSelected);
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CBT";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("sab immo")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SAB";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("sagnimorte")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SAG";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
     // Indicateur select effectué
     setIsOptionRefSelectedArray((prevState) => {
       const newState = [...prevState];
@@ -530,6 +781,256 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       newState[index] = libelleSelected;
       return newState;
     });
+
+    // Test pour initialisation du compte
+    if (
+      (libelleSelected.toLowerCase().includes("bouscasse".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("bouvet".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("Brotteaux".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("CACEI".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("capsa".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("cesar".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("CHQ".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("dabreteau".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("Dify".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("G.S.I".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("G2G".toLowerCase()) ||
+        libelleSelected
+          .toLowerCase()
+          .includes("Gestion Immo Lyon".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("Immokalis".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("lumiere".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("MODICA".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("Multi".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("Multisimo".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("NUOVA".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("PayPal".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("Primogest".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("Remise CB".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("RHONE SAONE".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("SAB IMMO".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("SAGNIMORTE".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("SORBIERS".toLowerCase())) &&
+      sourceType === "SGEP"
+    ) {
+      console.log("CAS CRITERE DETECTE");
+      console.log("libelleSelected");
+      console.log(libelleSelected);
+      if (
+        libelleSelected.toLowerCase().includes("CHQ".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("PayPal".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PAR";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        libelleSelected.toLowerCase().includes("Primogest".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("RHONE SAONE".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("SORBIERS".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PRI";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("bouscasse".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411BOU";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("bouvet")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411FOB";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("brotteaux")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ESP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("cacei")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SQA";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("capsa")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CAP";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("cesar")) {
+        console.log("cesar");
+        console.log(libelleSelected);
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CES";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("dabreteau")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DAB";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("dify")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DIF";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("g.s.i")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411GAG";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("g2g")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411GON";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("gestion immo lyon")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411GES";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("immokalis")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411IMM";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("lumiere")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CIV";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("modica")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ROS";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("multi")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411MUL";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("nuova")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411POR";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("remise cb")) {
+        console.log("CRITERE remise cb");
+
+        console.log(libelleSelected);
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CBT";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("sab immo")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SAB";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("sagnimorte")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SAG";
+          return newState;
+        });
+      }
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+    //////
 
     // Indicateur select effectué
     setIsOptionLibSelectedArray((prevState) => {
@@ -757,7 +1258,8 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
                   Compte :
                   <select
                     name={`compte-${index}`}
-                    defaultValue=""
+                    // defaultValue=""
+                    value={compteSelectedArray[index]}
                     onChange={(e) => {
                       handleCompte(e.target.value, index);
                     }}
@@ -771,9 +1273,7 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
                         : ""
                     }
                   >
-                    <option value="" disabled>
-                      Choisissez un compte
-                    </option>
+                    <option value="">Choisissez un compte</option>
                     {compteOptions.map((compte, i) => (
                       <option key={i} value={compte}>
                         {compte}
