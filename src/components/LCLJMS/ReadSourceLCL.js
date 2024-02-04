@@ -24,9 +24,16 @@ const ReadSourceLCL = ({ fileUrl, handleDataRead }) => {
         // Utiliser TextDecoder pour convertir les bytes en chaîne de texte
         const text = new TextDecoder().decode(buffer);
 
+        // Séparer le texte en lignes et supprimer la dernière ligne
+        const lines = text.split("\n");
+        if (lines.length > 0) {
+          lines.pop(); // Supprime la dernière ligne
+        }
+        const modifiedText = lines.join("\n");
+
         // Utilisation de papaparse pour traiter le fichier CSV
         const parsedData = await new Promise((resolve) => {
-          Papa.parse(text, {
+          Papa.parse(modifiedText, {
             header: false,
             dynamicTyping: true,
             skipEmptyLines: true,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 
 const ListeDebitsLCL = ({ debitsTable, sourceName, sourceType }) => {
@@ -767,6 +767,13 @@ const ListeDebitsLCL = ({ debitsTable, sourceName, sourceType }) => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    setCompteSelectedArray(debitsTable.map(() => "401000"));
+    setIsOptionCptSelectedArray(debitsTable.map(() => true));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debitsTable]);
+
   return (
     <div>
       <h2>Liste des Débits</h2>
@@ -877,19 +884,32 @@ const ListeDebitsLCL = ({ debitsTable, sourceName, sourceType }) => {
                     onChange={(e) => {
                       handleCompte(e.target.value, index);
                     }}
+                    //   className={
+                    //     (isOptionCptSelectedArray[index] &&
+                    //       !isAutreCompteSelectedArray[index]) ||
+                    //     (isOptionCptSelectedArray[index] &&
+                    //       isAutreCompteSelectedArray[index] &&
+                    //       isAutreCompteRenseigneArray[index])
+                    //       ? "option-selected"
+                    //       : ""
+                    //   }
+                    // >
                     className={
-                      (isOptionCptSelectedArray[index] &&
-                        !isAutreCompteSelectedArray[index]) ||
-                      (isOptionCptSelectedArray[index] &&
-                        isAutreCompteSelectedArray[index] &&
-                        isAutreCompteRenseigneArray[index])
+                      compteSelectedArray[index] === "401000"
+                        ? "default-selected"
+                        : (isOptionCptSelectedArray[index] &&
+                            !isAutreCompteSelectedArray[index]) ||
+                          (isOptionCptSelectedArray[index] &&
+                            isAutreCompteSelectedArray[index] &&
+                            isAutreCompteRenseigneArray[index])
                         ? "option-selected"
                         : ""
                     }
                   >
-                    <option value="" disabled>
+                    {/* <option value="" disabled>
                       Choisissez un compte
-                    </option>
+                    </option> */}
+                    <option value="">{compteSelectedArray[index]}</option>
                     {compteOptions.map((compte, i) => (
                       <option key={i} value={compte}>
                         {compte}

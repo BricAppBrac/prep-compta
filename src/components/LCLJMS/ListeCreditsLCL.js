@@ -886,9 +886,7 @@ const ListeCreditsLCL = ({ creditsTable, sourceName, sourceType }) => {
                         : ""
                     }
                   >
-                    <option value="" disabled>
-                      Choisissez un compte
-                    </option>
+                    <option value="">Choisissez un compte</option>
                     {compteOptions.map((compte, i) => (
                       <option key={i} value={compte}>
                         {compte}
