@@ -518,6 +518,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
           .includes("TOTALENERGIES DEVELOP".toLowerCase())) &&
       sourceType === "SGEP"
     ) {
+      console.log("ref SGEP");
       if (
         refSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         refSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
@@ -682,6 +683,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         refSelected.toLowerCase().includes("interets crediteurs")) &&
       sourceType === "SGJMS"
     ) {
+      console.log("ref SGJMS");
       if (
         refSelected.toLowerCase().includes("progeliance") ||
         refSelected.toLowerCase().includes("cions")
@@ -837,6 +839,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
           .includes("TOTALENERGIES DEVELOP".toLowerCase())) &&
       sourceType === "SGEP"
     ) {
+      console.log("lib SGEP");
       if (
         libelleSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
@@ -1001,6 +1004,9 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         libelleSelected.toLowerCase().includes("interets crediteurs")) &&
       sourceType === "SGJMS"
     ) {
+      console.log("lib SGJMS");
+      console.log("libelleSelected");
+      console.log(libelleSelected);
       if (
         libelleSelected.toLowerCase().includes("progeliance") ||
         libelleSelected.toLowerCase().includes("cions")
@@ -1327,8 +1333,8 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
                   Compte :
                   <select
                     name={`compte-${index}`}
-                    defaultValue=""
-                    // value={compteSelectedArray[index]}
+                    // defaultValue=""
+                    value={compteSelectedArray[index]}
                     onChange={(e) => {
                       handleCompte(e.target.value, index);
                     }}
