@@ -872,7 +872,8 @@ const ListeDebitsLCL = ({ debitsTable, sourceName, sourceType }) => {
                   Compte :
                   <select
                     name={`compte-${index}`}
-                    defaultValue=""
+                    // defaultValue=""
+                    value={compteSelectedArray[index]}
                     onChange={(e) => {
                       handleCompte(e.target.value, index);
                     }}

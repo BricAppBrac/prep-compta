@@ -724,16 +724,6 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (refSelected.toLowerCase().includes("d.g.f.i.p")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "445510";
-          return newState;
-        });
-      }
-
-      //////
-
       if (
         refSelected.toLowerCase().includes("mma") ||
         refSelected.toLowerCase().includes("cdvg")
@@ -754,7 +744,15 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
           return newState;
         });
       }
+      //////
 
+      if (refSelected.toLowerCase().includes("d.g.f.i.p")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
       //////
       if (refSelected.toLowerCase().includes("interets crediteurs")) {
         setCompteSelectedArray((prevState) => {
@@ -1047,16 +1045,6 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (libelleSelected.toLowerCase().includes("d.g.f.i.p")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "445510";
-          return newState;
-        });
-      }
-
-      //////
-
       if (
         libelleSelected.toLowerCase().includes("mma") ||
         libelleSelected.toLowerCase().includes("cdvg")
@@ -1077,7 +1065,15 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
           return newState;
         });
       }
+      //////
 
+      if (libelleSelected.toLowerCase().includes("d.g.f.i.p")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
       //////
       if (libelleSelected.toLowerCase().includes("interets crediteurs")) {
         setCompteSelectedArray((prevState) => {

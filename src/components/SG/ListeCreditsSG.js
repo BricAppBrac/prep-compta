@@ -800,16 +800,6 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (refSelected.toLowerCase().includes("d.g.f.i.p")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "445510";
-          return newState;
-        });
-      }
-
-      //////
-
       if (
         refSelected.toLowerCase().includes("mma") ||
         refSelected.toLowerCase().includes("cdvg")
@@ -827,6 +817,16 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "580000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("d.g.f.i.p")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
           return newState;
         });
       }
@@ -1196,16 +1196,6 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (libelleSelected.toLowerCase().includes("d.g.f.i.p")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "445510";
-          return newState;
-        });
-      }
-
-      //////
-
       if (
         libelleSelected.toLowerCase().includes("mma") ||
         libelleSelected.toLowerCase().includes("cdvg")
@@ -1226,7 +1216,15 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
           return newState;
         });
       }
+      //////
 
+      if (libelleSelected.toLowerCase().includes("d.g.f.i.p")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
       //////
       if (libelleSelected.toLowerCase().includes("interets crediteurs")) {
         setCompteSelectedArray((prevState) => {
