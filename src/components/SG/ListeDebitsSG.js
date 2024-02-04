@@ -494,7 +494,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
-    // Test pour initialisation du compte
+    // Test pour initialisation du compte SGEP
     if (
       (refSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         refSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
@@ -666,6 +666,112 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       });
     }
 
+    // Test pour initialisation du compte SGJMS
+    if (
+      (refSelected.toLowerCase().includes("progeliance") ||
+        refSelected.toLowerCase().includes("cions") ||
+        refSelected.toLowerCase().includes("yohann") ||
+        refSelected.toLowerCase().includes("compte a terme") ||
+        refSelected.toLowerCase().includes("d.g.f.i.p") ||
+        refSelected.toLowerCase().includes("rem") ||
+        refSelected.toLowerCase().includes("mma") ||
+        refSelected.toLowerCase().includes("cpte") ||
+        refSelected.toLowerCase().includes("expertise") ||
+        refSelected.toLowerCase().includes("cdvg") ||
+        refSelected.toLowerCase().includes("cat") ||
+        refSelected.toLowerCase().includes("interets crediteurs")) &&
+      sourceType === "SGJMS"
+    ) {
+      if (
+        refSelected.toLowerCase().includes("progeliance") ||
+        refSelected.toLowerCase().includes("cions")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        refSelected.toLowerCase().includes("yohann") ||
+        refSelected.toLowerCase().includes("rem") ||
+        refSelected.toLowerCase().includes("expertise")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        refSelected.toLowerCase().includes("compte a terme") ||
+        refSelected.toLowerCase().includes("cat")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "508100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("d.g.f.i.p")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        refSelected.toLowerCase().includes("mma") ||
+        refSelected.toLowerCase().includes("cdvg")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("cpte")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("interets crediteurs")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "768000";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
     // Indicateur select effectué
     setIsOptionRefSelectedArray((prevState) => {
       const newState = [...prevState];
@@ -705,7 +811,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
-    // Test pour initialisation du compte
+    // Test pour initialisation du compte SGEP
     if (
       (libelleSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
@@ -865,6 +971,112 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "164220";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
+    // Test pour initialisation du compte SGJMS
+    if (
+      (libelleSelected.toLowerCase().includes("progeliance") ||
+        libelleSelected.toLowerCase().includes("cions") ||
+        libelleSelected.toLowerCase().includes("yohann") ||
+        libelleSelected.toLowerCase().includes("compte a terme") ||
+        libelleSelected.toLowerCase().includes("d.g.f.i.p") ||
+        libelleSelected.toLowerCase().includes("rem") ||
+        libelleSelected.toLowerCase().includes("mma") ||
+        libelleSelected.toLowerCase().includes("cpte") ||
+        libelleSelected.toLowerCase().includes("expertise") ||
+        libelleSelected.toLowerCase().includes("cdvg") ||
+        libelleSelected.toLowerCase().includes("cat") ||
+        libelleSelected.toLowerCase().includes("interets crediteurs")) &&
+      sourceType === "SGJMS"
+    ) {
+      if (
+        libelleSelected.toLowerCase().includes("progeliance") ||
+        libelleSelected.toLowerCase().includes("cions")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        libelleSelected.toLowerCase().includes("yohann") ||
+        libelleSelected.toLowerCase().includes("rem") ||
+        libelleSelected.toLowerCase().includes("expertise")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        libelleSelected.toLowerCase().includes("compte a terme") ||
+        libelleSelected.toLowerCase().includes("cat")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "508100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("d.g.f.i.p")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        libelleSelected.toLowerCase().includes("mma") ||
+        libelleSelected.toLowerCase().includes("cdvg")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("cpte")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("interets crediteurs")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "768000";
           return newState;
         });
       }

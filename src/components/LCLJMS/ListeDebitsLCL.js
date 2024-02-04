@@ -8,6 +8,7 @@ const ListeDebitsLCL = ({ debitsTable, sourceName, sourceType }) => {
   let compteOptions = [
     "401000",
     "401001",
+    "401CBT",
     "421001",
     "425000",
     "431000",
@@ -354,6 +355,139 @@ const ListeDebitsLCL = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
+    // Test pour initialisation du compte
+    if (
+      refSelected.toLowerCase().includes("zen") ||
+      refSelected.toLowerCase().includes("asp") ||
+      refSelected.toLowerCase().includes("prixtel") ||
+      refSelected.toLowerCase().includes("sgsante") ||
+      refSelected.toLowerCase().includes("renouvellement") ||
+      refSelected.toLowerCase().includes("urssaf") ||
+      refSelected.toLowerCase().includes("bouygues") ||
+      refSelected.toLowerCase().includes("cmut cpte") ||
+      refSelected.toLowerCase().includes("salaire") ||
+      refSelected.toLowerCase().includes("dgfip") ||
+      refSelected.toLowerCase().includes("jms sg") ||
+      refSelected.toLowerCase().includes("rem") ||
+      refSelected.toLowerCase().includes("interets") ||
+      refSelected.toLowerCase().includes("carte")
+    ) {
+      if (
+        refSelected.toLowerCase().includes("asp") ||
+        refSelected.toLowerCase().includes("sgsante") ||
+        refSelected.toLowerCase().includes("URSSAF".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "641400";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        refSelected.toLowerCase().includes("prixtel") ||
+        refSelected.toLowerCase().includes("bouygues")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "626100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        refSelected.toLowerCase().includes("cmut cpte") ||
+        refSelected.toLowerCase().includes("rem")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("zen")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("renouvellement")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "508000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("salaire")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "421000";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("dgfip")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("jms sg")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("interets")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "768000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("carte")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401CBT";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
     // Indicateur select effectué
     setIsOptionRefSelectedArray((prevState) => {
       const newState = [...prevState];
@@ -392,6 +526,139 @@ const ListeDebitsLCL = ({ debitsTable, sourceName, sourceType }) => {
       newState[index] = libelleSelected;
       return newState;
     });
+
+    // Test pour initialisation du compte
+    if (
+      libelleSelected.toLowerCase().includes("zen") ||
+      libelleSelected.toLowerCase().includes("asp") ||
+      libelleSelected.toLowerCase().includes("prixtel") ||
+      libelleSelected.toLowerCase().includes("sgsante") ||
+      libelleSelected.toLowerCase().includes("renouvellement") ||
+      libelleSelected.toLowerCase().includes("urssaf") ||
+      libelleSelected.toLowerCase().includes("bouygues") ||
+      libelleSelected.toLowerCase().includes("cmut cpte") ||
+      libelleSelected.toLowerCase().includes("salaire") ||
+      libelleSelected.toLowerCase().includes("dgfip") ||
+      libelleSelected.toLowerCase().includes("jms sg") ||
+      libelleSelected.toLowerCase().includes("rem") ||
+      libelleSelected.toLowerCase().includes("interets") ||
+      libelleSelected.toLowerCase().includes("carte")
+    ) {
+      if (
+        libelleSelected.toLowerCase().includes("asp") ||
+        libelleSelected.toLowerCase().includes("sgsante") ||
+        libelleSelected.toLowerCase().includes("URSSAF".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "641400";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (
+        libelleSelected.toLowerCase().includes("prixtel") ||
+        libelleSelected.toLowerCase().includes("bouygues")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "626100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (
+        libelleSelected.toLowerCase().includes("cmut cpte") ||
+        libelleSelected.toLowerCase().includes("rem")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("zen")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("renouvellement")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "508000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("salaire")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "421000";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("dgfip")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("jms sg")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("interets")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "768000";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("carte")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401CBT";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
 
     // Indicateur select effectué
     setIsOptionLibSelectedArray((prevState) => {
