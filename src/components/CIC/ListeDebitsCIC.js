@@ -15,6 +15,7 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
     "218300",
     "281830",
     "310000",
+    "401000",
     "401ACT",
     "401ADA",
     "401Adm",
@@ -473,6 +474,32 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
+    /////////////*** */
+    // Test pour initialisation du compte
+    if (libelleSelected.toLowerCase().includes("cb")) {
+      // if (
+      //   libelleSelected.toLowerCase().includes("cb")
+      // )
+      // {
+      setCompteSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = "401000";
+        return newState;
+      });
+      // }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
+    /////////**** */
+
     // Indicateur select effectué
     setIsOptionLibSelectedArray((prevState) => {
       const newState = [...prevState];
@@ -685,7 +712,8 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
                   Compte :
                   <select
                     name={`compte-${index}`}
-                    defaultValue=""
+                    // defaultValue=""
+                    value={compteSelectedArray[index]}
                     onChange={(e) => {
                       handleCompte(e.target.value, index);
                     }}
