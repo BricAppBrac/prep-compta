@@ -6,6 +6,7 @@ const ListeCreditsBPEP = ({ creditsTable, sourceName, sourceType }) => {
   console.log("creditsTable");
   console.log(creditsTable);
   let compteOptions = [
+    "164230",
     "401000",
     "401001",
     "401CED",
@@ -33,6 +34,7 @@ const ListeCreditsBPEP = ({ creditsTable, sourceName, sourceType }) => {
     "411DAB",
     "411DIF",
     "411ESP",
+    "411FOB",
     "411FOL",
     "411FON",
     "411FRA",
@@ -77,6 +79,7 @@ const ListeCreditsBPEP = ({ creditsTable, sourceName, sourceType }) => {
     "455100",
     "486000",
     "491000",
+    "580000",
     "607100",
     "611010",
     "611030",
@@ -124,9 +127,6 @@ const ListeCreditsBPEP = ({ creditsTable, sourceName, sourceType }) => {
     "661110",
     "671000",
     "671200",
-    "580000",
-    "164230",
-    "411FOB",
   ];
 
   const [messageInfo, setMessageInfo] = useState("");
@@ -349,6 +349,59 @@ const ListeCreditsBPEP = ({ creditsTable, sourceName, sourceType }) => {
       newState[index] = libelleSelected;
       return newState;
     });
+
+    ////*** */
+    // Test pour initialisation du compte
+    if (
+      libelleSelected.toLowerCase().includes("bourguignon") ||
+      libelleSelected.toLowerCase().includes("atimmo") ||
+      libelleSelected.toLowerCase().includes("square") ||
+      libelleSelected.toLowerCase().includes("immobiliere sf")
+    ) {
+      /////////
+
+      if (
+        libelleSelected.toLowerCase().includes("atimmo") ||
+        libelleSelected.toLowerCase().includes("immobiliere sf")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ATI";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("bourguignon")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CI2";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("square")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SQV";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
+    ////**** */
 
     // Indicateur select effectué
     setIsOptionLibSelectedArray((prevState) => {

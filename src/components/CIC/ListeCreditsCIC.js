@@ -434,6 +434,73 @@ const ListeCreditsCIC = ({ creditsTable, sourceName, sourceType }) => {
       return newState;
     });
 
+    /////////////*** */
+    // Test pour initialisation du compte
+    if (
+      refSelected.toLowerCase().includes("forestiere") ||
+      refSelected.toLowerCase().includes("velaa") ||
+      refSelected.toLowerCase().includes("vir") ||
+      refSelected.toLowerCase().includes("biatech") ||
+      refSelected.toLowerCase().includes("sci") ||
+      refSelected.toLowerCase().includes("societe civile immobiliere")
+    ) {
+      if (refSelected.toLowerCase().includes("forestiere")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PHA";
+          return newState;
+        });
+      }
+
+      //////
+
+      //////
+      if (refSelected.toLowerCase().includes("velaa")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411VEE";
+          return newState;
+        });
+      }
+      //////
+      //////
+      if (refSelected.toLowerCase().includes("vir")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "471000";
+          return newState;
+        });
+      }
+      //////
+      if (refSelected.toLowerCase().includes("biatech")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+      //////
+      if (
+        refSelected.toLowerCase().includes("sci") ||
+        refSelected.toLowerCase().includes("societe civile immobiliere")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455100";
+          return newState;
+        });
+      }
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
+    /////////**** */
+
     // Indicateur select effectué
     setIsOptionRefSelectedArray((prevState) => {
       const newState = [...prevState];
@@ -472,6 +539,73 @@ const ListeCreditsCIC = ({ creditsTable, sourceName, sourceType }) => {
       newState[index] = libelleSelected;
       return newState;
     });
+
+    /////////////*** */
+    // Test pour initialisation du compte
+    if (
+      libelleSelected.toLowerCase().includes("forestiere") ||
+      libelleSelected.toLowerCase().includes("velaa") ||
+      libelleSelected.toLowerCase().includes("vir") ||
+      libelleSelected.toLowerCase().includes("biatech") ||
+      libelleSelected.toLowerCase().includes("sci") ||
+      libelleSelected.toLowerCase().includes("societe civile immobiliere")
+    ) {
+      if (libelleSelected.toLowerCase().includes("forestiere")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PHA";
+          return newState;
+        });
+      }
+
+      //////
+
+      //////
+      if (libelleSelected.toLowerCase().includes("velaa")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411VEE";
+          return newState;
+        });
+      }
+      //////
+      //////
+      if (libelleSelected.toLowerCase().includes("vir")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "471000";
+          return newState;
+        });
+      }
+      //////
+      if (libelleSelected.toLowerCase().includes("biatech")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+      //////
+      if (
+        libelleSelected.toLowerCase().includes("sci") ||
+        libelleSelected.toLowerCase().includes("societe civile immobiliere")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455100";
+          return newState;
+        });
+      }
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
+    /////////**** */
 
     // Indicateur select effectué
     setIsOptionLibSelectedArray((prevState) => {
@@ -685,7 +819,8 @@ const ListeCreditsCIC = ({ creditsTable, sourceName, sourceType }) => {
                   Compte :
                   <select
                     name={`compte-${index}`}
-                    defaultValue=""
+                    // defaultValue=""
+                    value={compteSelectedArray[index]}
                     onChange={(e) => {
                       handleCompte(e.target.value, index);
                     }}

@@ -6,15 +6,6 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
   console.log("debitsTable");
   console.log(debitsTable);
   let compteOptions = [
-    "101300",
-    "101300",
-    "106100",
-    "119000",
-    "120000",
-    "208100",
-    "218300",
-    "281830",
-    "310000",
     "401000",
     "401ACT",
     "401ADA",
@@ -245,6 +236,15 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
     "FTRIAD",
     "FVERNE",
     "FWILD0",
+    "101300",
+    "101300",
+    "106100",
+    "119000",
+    "120000",
+    "208100",
+    "218300",
+    "281830",
+    "310000",
   ];
 
   const [messageInfo, setMessageInfo] = useState("");
@@ -435,6 +435,125 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
+    /////////////*** */
+    // Test pour initialisation du compte
+    if (
+      refSelected.toLowerCase().includes("cb") ||
+      refSelected.toLowerCase().includes("sfr") ||
+      refSelected.toLowerCase().includes("keyyo") ||
+      refSelected.toLowerCase().includes("sgt") ||
+      refSelected.toLowerCase().includes("f commission d'intervention") ||
+      refSelected.toLowerCase().includes("interets/frais") ||
+      refSelected.toLowerCase().includes("psc") ||
+      refSelected.toLowerCase().includes("cheque") ||
+      refSelected.toLowerCase().includes("dab") ||
+      refSelected.toLowerCase().includes("frais paie cb") ||
+      refSelected.toLowerCase().includes("vir") ||
+      refSelected.toLowerCase().includes("bouygues") ||
+      refSelected.toLowerCase().includes("biatech") ||
+      refSelected.toLowerCase().includes("sci") ||
+      refSelected.toLowerCase().includes("societe civile immobiliere") ||
+      refSelected.toLowerCase().includes("roguet")
+    ) {
+      if (refSelected.toLowerCase().includes("cb")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401000";
+          return newState;
+        });
+      }
+
+      //////
+
+      //////
+      if (
+        refSelected.toLowerCase().includes("sfr") ||
+        refSelected.toLowerCase().includes("keyyo")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "626100";
+          return newState;
+        });
+      }
+      //////
+      //////
+      if (
+        refSelected.toLowerCase().includes("sgt") ||
+        refSelected.toLowerCase().includes("f commission d'intervention") ||
+        refSelected.toLowerCase().includes("interets/frais") ||
+        refSelected.toLowerCase().includes("frais paie cb")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627800";
+          return newState;
+        });
+      }
+      //////
+      if (
+        refSelected.toLowerCase().includes("psc") ||
+        refSelected.toLowerCase().includes("bouygues")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401000";
+          return newState;
+        });
+      }
+      //////
+      if (
+        refSelected.toLowerCase().includes("cheque") ||
+        refSelected.toLowerCase().includes("vir")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "471000";
+          return newState;
+        });
+      }
+
+      //////
+      if (
+        refSelected.toLowerCase().includes("dab") ||
+        refSelected.toLowerCase().includes("sci") ||
+        refSelected.toLowerCase().includes("societe civile immobiliere")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455100";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("biatech")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("roguet")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401ROG";
+          return newState;
+        });
+      }
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
+    /////////**** */
+
     // Indicateur select effectué
     setIsOptionRefSelectedArray((prevState) => {
       const newState = [...prevState];
@@ -476,19 +595,109 @@ const ListeDebitsCIC = ({ debitsTable, sourceName, sourceType }) => {
 
     /////////////*** */
     // Test pour initialisation du compte
-    if (libelleSelected.toLowerCase().includes("cb")) {
-      // if (
-      //   libelleSelected.toLowerCase().includes("cb")
-      // )
-      // {
-      setCompteSelectedArray((prevState) => {
-        const newState = [...prevState];
-        newState[index] = "401000";
-        return newState;
-      });
-      // }
+    if (
+      libelleSelected.toLowerCase().includes("cb") ||
+      libelleSelected.toLowerCase().includes("sfr") ||
+      libelleSelected.toLowerCase().includes("keyyo") ||
+      libelleSelected.toLowerCase().includes("sgt") ||
+      libelleSelected.toLowerCase().includes("f commission d'intervention") ||
+      libelleSelected.toLowerCase().includes("interets/frais") ||
+      libelleSelected.toLowerCase().includes("psc") ||
+      libelleSelected.toLowerCase().includes("cheque") ||
+      libelleSelected.toLowerCase().includes("dab") ||
+      libelleSelected.toLowerCase().includes("frais paie cb") ||
+      libelleSelected.toLowerCase().includes("vir") ||
+      libelleSelected.toLowerCase().includes("bouygues") ||
+      libelleSelected.toLowerCase().includes("biatech") ||
+      libelleSelected.toLowerCase().includes("sci") ||
+      libelleSelected.toLowerCase().includes("societe civile immobiliere") ||
+      libelleSelected.toLowerCase().includes("roguet")
+    ) {
+      if (libelleSelected.toLowerCase().includes("cb")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401000";
+          return newState;
+        });
+      }
+      //////
+      if (
+        libelleSelected.toLowerCase().includes("sfr") ||
+        libelleSelected.toLowerCase().includes("keyyo")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "626100";
+          return newState;
+        });
+      }
+      //////
+      //////
+      if (
+        libelleSelected.toLowerCase().includes("sgt") ||
+        libelleSelected.toLowerCase().includes("f commission d'intervention") ||
+        libelleSelected.toLowerCase().includes("interets/frais") ||
+        libelleSelected.toLowerCase().includes("frais paie cb")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627800";
+          return newState;
+        });
+      }
+      //////
+      if (
+        libelleSelected.toLowerCase().includes("psc") ||
+        libelleSelected.toLowerCase().includes("bouygues")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401000";
+          return newState;
+        });
+      }
+      //////
+      if (
+        libelleSelected.toLowerCase().includes("cheque") ||
+        libelleSelected.toLowerCase().includes("vir")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "471000";
+          return newState;
+        });
+      }
 
       //////
+      if (
+        libelleSelected.toLowerCase().includes("dab") ||
+        libelleSelected.toLowerCase().includes("sci") ||
+        libelleSelected.toLowerCase().includes("societe civile immobiliere")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455100";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("biatech")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "580000";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("roguet")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401ROG";
+          return newState;
+        });
+      }
 
       // Indicateur select effectué
       setIsOptionCptSelectedArray((prevState) => {

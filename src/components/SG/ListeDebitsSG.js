@@ -15,6 +15,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
     "401EXC",
     "401EXP",
     "401JMS",
+    "401LCR",
     "401LEG",
     "401PLA",
     "401PPC",
@@ -515,12 +516,21 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         refSelected.toLowerCase().includes("allart".toLowerCase()) ||
         refSelected.toLowerCase().includes("gharbit".toLowerCase()) ||
         refSelected.toLowerCase().includes("remise cb") ||
-        refSelected
-          .toLowerCase()
-          .includes("TOTALENERGIES DEVELOP".toLowerCase())) &&
+        refSelected.toLowerCase().includes("LCR".toLowerCase())) &&
       sourceType === "SGEP"
     ) {
       console.log("ref SGEP");
+
+      if (refSelected.toLowerCase().includes("LCR".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401LCR";
+          return newState;
+        });
+      }
+
+      //////
+
       if (
         refSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         refSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
@@ -846,10 +856,21 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         libelleSelected.toLowerCase().includes("REMISE CB".toLowerCase()) ||
         libelleSelected
           .toLowerCase()
-          .includes("TOTALENERGIES DEVELOP".toLowerCase())) &&
+          .includes("TOTALENERGIES DEVELOP".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("LCR".toLowerCase())) &&
       sourceType === "SGEP"
     ) {
       console.log("lib SGEP");
+
+      if (libelleSelected.toLowerCase().includes("LCR".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "401LCR";
+          return newState;
+        });
+      }
+
+      //////
       if (
         libelleSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||

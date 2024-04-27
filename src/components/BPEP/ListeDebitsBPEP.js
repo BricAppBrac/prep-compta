@@ -6,6 +6,7 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
   console.log("debitsTable");
   console.log(debitsTable);
   let compteOptions = [
+    "164230",
     "401000",
     "401001",
     "401CED",
@@ -33,6 +34,7 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
     "411DAB",
     "411DIF",
     "411ESP",
+    "411FOB",
     "411FOL",
     "411FON",
     "411FRA",
@@ -77,6 +79,7 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
     "455100",
     "486000",
     "491000",
+    "580000",
     "607100",
     "611010",
     "611030",
@@ -124,9 +127,6 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
     "661110",
     "671000",
     "671200",
-    "580000",
-    "164230",
-    "411FOB",
   ];
 
   const [messageInfo, setMessageInfo] = useState("");
@@ -349,6 +349,59 @@ const ListeDebitsBPEP = ({ debitsTable, sourceName, sourceType }) => {
       newState[index] = libelleSelected;
       return newState;
     });
+
+    ////*** */
+    // Test pour initialisation du compte
+    if (
+      libelleSelected.toLowerCase().includes("frais") ||
+      libelleSelected.toLowerCase().includes("arrete de cpte") ||
+      libelleSelected.toLowerCase().includes("echeance pret") ||
+      libelleSelected.toLowerCase().includes("cpte a cpte") ||
+      libelleSelected.toLowerCase().includes("cyberplus")
+    ) {
+      if (
+        libelleSelected.toLowerCase().includes("frais") ||
+        libelleSelected.toLowerCase().includes("arrete de cpte") ||
+        libelleSelected.toLowerCase().includes("cyberplus")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "627100";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("echeance pret")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164230";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("cpte a cpte")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455100";
+          return newState;
+        });
+      }
+
+      //////
+
+      // Indicateur select effectué
+      setIsOptionCptSelectedArray((prevState) => {
+        const newState = [...prevState];
+        newState[index] = true;
+        return newState;
+      });
+    }
+
+    ////**** */
 
     // Indicateur select effectué
     setIsOptionLibSelectedArray((prevState) => {
