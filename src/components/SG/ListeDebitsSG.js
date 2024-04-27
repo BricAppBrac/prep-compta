@@ -7,6 +7,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
   console.log(debitsTable);
   let compteOptionsSGEP = [
     "164100",
+    "164200",
     "164220",
     "401000",
     "401001",
@@ -506,6 +507,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         refSelected.toLowerCase().includes("MMA IARD".toLowerCase()) ||
         refSelected.toLowerCase().includes("JAZZPRO".toLowerCase()) ||
         refSelected.includes("221168100944") ||
+        refSelected.includes("222084100944") ||
         refSelected.toLowerCase().includes("salaire".toLowerCase()) ||
         refSelected.toLowerCase().includes("TETRIS".toLowerCase()) ||
         refSelected.toLowerCase().includes("AGIPI".toLowerCase()) ||
@@ -573,7 +575,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       if (refSelected.toLowerCase().includes("MMA IARD".toLowerCase())) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
-          newState[index] = "666000";
+          newState[index] = "616000";
           return newState;
         });
       }
@@ -593,6 +595,15 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "164100";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.includes("222084100944")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164200";
           return newState;
         });
       }
@@ -825,6 +836,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         libelleSelected.toLowerCase().includes("MMA IARD".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("JAZZPRO".toLowerCase()) ||
         libelleSelected.includes("221168100944") ||
+        libelleSelected.includes("222084100944") ||
         libelleSelected.toLowerCase().includes("salaire".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("TETRIS".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("AGIPI".toLowerCase()) ||
@@ -892,7 +904,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       if (libelleSelected.toLowerCase().includes("MMA IARD".toLowerCase())) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
-          newState[index] = "666000";
+          newState[index] = "616000";
           return newState;
         });
       }
@@ -912,6 +924,15 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "164100";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.includes("222084100944")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164200";
           return newState;
         });
       }
