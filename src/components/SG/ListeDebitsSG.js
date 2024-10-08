@@ -6,6 +6,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
   console.log("debitsTable");
   console.log(debitsTable);
   let compteOptionsSGEP = [
+    "164000",
     "164100",
     "164200",
     "164220",
@@ -67,6 +68,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
     "428610",
     "431000",
     "442100",
+    "445510",
     "445620",
     "445660",
     "445661",
@@ -79,6 +81,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
     "455005",
     "455006",
     "455100",
+    "455500",
     "486000",
     "491000",
     "607100",
@@ -96,6 +99,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
     "615610",
     "616000",
     "616100",
+    "616200",
     "616300",
     "616310",
     "616400",
@@ -496,7 +500,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
-    // Test pour initialisation du compte SGEP
+    // Test pour initialisation du compte SGEP pour la Ref
     if (
       (refSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         refSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
@@ -513,8 +517,19 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         refSelected.toLowerCase().includes("TETRIS".toLowerCase()) ||
         refSelected.toLowerCase().includes("AGIPI".toLowerCase()) ||
         refSelected.toLowerCase().includes("blicko lyon".toLowerCase()) ||
+        refSelected.toLowerCase().includes("gharbi".toLowerCase()) ||
+        refSelected.toLowerCase().includes("adis".toLowerCase()) ||
+        refSelected.toLowerCase().includes("instantane".toLowerCase()) ||
+        refSelected.toLowerCase().includes("3310ca3".toLowerCase()) ||
+        refSelected.toLowerCase().includes("lorrain".toLowerCase()) ||
+        refSelected.toLowerCase().includes("tresorerie".toLowerCase()) ||
+        refSelected.toLowerCase().includes("patrice".toLowerCase()) ||
+        refSelected.toLowerCase().includes("224003100635".toLowerCase()) ||
+        refSelected.toLowerCase().includes("axa".toLowerCase()) ||
+        refSelected.toLowerCase().includes("rer".toLowerCase()) ||
         refSelected.toLowerCase().includes("allart".toLowerCase()) ||
-        refSelected.toLowerCase().includes("gharbit".toLowerCase()) ||
+        refSelected.toLowerCase().includes("barbier".toLowerCase()) ||
+        refSelected.toLowerCase().includes("cpte a cpte".toLowerCase()) ||
         refSelected.toLowerCase().includes("remise cb") ||
         refSelected.toLowerCase().includes("LCR".toLowerCase())) &&
       sourceType === "SGEP"
@@ -561,7 +576,8 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
 
       if (
         refSelected.toLowerCase().includes("allart".toLowerCase()) ||
-        refSelected.toLowerCase().includes("gharbit".toLowerCase())
+        refSelected.toLowerCase().includes("gharbi".toLowerCase()) ||
+        refSelected.toLowerCase().includes("patrice".toLowerCase())
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -592,7 +608,14 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (refSelected.toLowerCase().includes("JAZZPRO".toLowerCase())) {
+      if (
+        refSelected
+          .toLowerCase()
+          .includes(
+            "JAZZPRO".toLowerCase() ||
+              refSelected.toLowerCase().includes("instantane".toLowerCase())
+          )
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "627100";
@@ -619,7 +642,11 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (refSelected.toLowerCase().includes("salaire".toLowerCase())) {
+      if (
+        refSelected.toLowerCase().includes("salaire".toLowerCase()) ||
+        refSelected.toLowerCase().includes("lorrain".toLowerCase()) ||
+        refSelected.toLowerCase().includes("barbier".toLowerCase())
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "421001";
@@ -638,7 +665,10 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (refSelected.toLowerCase().includes("AGIPI".toLowerCase())) {
+      if (
+        refSelected.toLowerCase().includes("AGIPI".toLowerCase()) ||
+        refSelected.toLowerCase().includes("adis".toLowerCase())
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "616400";
@@ -674,6 +704,46 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "164220";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("3310ca3".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
+
+      //////
+      if (
+        refSelected.toLowerCase().includes("tresorerie".toLowerCase()) ||
+        refSelected.toLowerCase().includes("rer".toLowerCase()) ||
+        refSelected.toLowerCase().includes("cpte a cpte".toLowerCase())
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455500";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("224003100635".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164000";
+          return newState;
+        });
+      }
+
+      //////
+      if (refSelected.toLowerCase().includes("axa".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616200";
           return newState;
         });
       }
@@ -832,7 +902,7 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       return newState;
     });
 
-    // Test pour initialisation du compte SGEP
+    // Test pour initialisation du compte SGEP pour le libellé
     if (
       (libelleSelected.toLowerCase().includes("PROBTP".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("CIBTP".toLowerCase()) ||
@@ -851,8 +921,19 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         libelleSelected.toLowerCase().includes("TETRIS".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("AGIPI".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("blicko lyon".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("gharbi".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("adis".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("instantane".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("3310ca3".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("lorrain".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("tresorerie".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("patrice".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("224003100635".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("axa".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("rer".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("allart".toLowerCase()) ||
-        libelleSelected.toLowerCase().includes("gharbit".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("barbier".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("cpte a cpte".toLowerCase()) ||
         libelleSelected.toLowerCase().includes("REMISE CB".toLowerCase()) ||
         libelleSelected
           .toLowerCase()
@@ -901,7 +982,8 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
 
       if (
         libelleSelected.toLowerCase().includes("allart") ||
-        libelleSelected.toLowerCase().includes("gharbit")
+        libelleSelected.toLowerCase().includes("gharbi") ||
+        libelleSelected.toLowerCase().includes("patrice")
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -932,7 +1014,10 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (libelleSelected.toLowerCase().includes("JAZZPRO".toLowerCase())) {
+      if (
+        libelleSelected.toLowerCase().includes("JAZZPRO".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("instantane")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "627100";
@@ -959,7 +1044,11 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (libelleSelected.toLowerCase().includes("salaire".toLowerCase())) {
+      if (
+        libelleSelected.toLowerCase().includes("salaire".toLowerCase()) ||
+        libelleSelected.toLowerCase().includes("lorrain") ||
+        libelleSelected.toLowerCase().includes("barbier")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "421001";
@@ -1006,6 +1095,24 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
       }
 
       //////
+      if (libelleSelected.toLowerCase().includes("adis")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616400";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("3310ca3")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "445510";
+          return newState;
+        });
+      }
+
+      //////
       if (
         libelleSelected
           .toLowerCase()
@@ -1014,6 +1121,37 @@ const ListeDebits = ({ debitsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "164220";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("224003100635")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "164000";
+          return newState;
+        });
+      }
+
+      //////
+      if (libelleSelected.toLowerCase().includes("axa")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "616200";
+          return newState;
+        });
+      }
+
+      //////
+      if (
+        libelleSelected.toLowerCase().includes("tresorerie") ||
+        libelleSelected.toLowerCase().includes("rer") ||
+        libelleSelected.toLowerCase().includes("cpte a cpte")
+      ) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "455500";
           return newState;
         });
       }
