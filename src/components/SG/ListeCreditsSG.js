@@ -928,7 +928,7 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       //////
       if (
         refSelected.toLowerCase().includes("metropole") ||
-        refSelected.toLowerCase().includes("HORVATH")
+        refSelected.toLowerCase().includes("HORVATH".toLowerCase())
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -1028,10 +1028,184 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (refSelected.toLowerCase().includes("BONNEFOY")) {
+      if (refSelected.toLowerCase().includes("BONNEFOY".toLowerCase())) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "411BON";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("LODGIS".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOD";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("MA REGIE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411MAR";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("HPI".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("OFYGEST".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411OFY";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("PRESQU'ILE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("PART DIEU".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ORP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("SMCI".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SMC";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("PALATINE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411FOT";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("DUOLOC".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DUO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("GAT".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "791005";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("COTRIMO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411COT";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("AXORENT".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AXO";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("ANDRIMMO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AND";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("EVOTION".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411EVO";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("HUMAN".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411HUM";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("LEHOME".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LEH";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("LOMBARD".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOM";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("LYON IMMO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LYI";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("VICTOIRE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411VIC";
           return newState;
         });
       }
@@ -1145,180 +1319,6 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "445510";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("LODGIS")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LOD";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("MA REGIE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411MAR";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("HPI")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411CEO";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("OFYGEST")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411OFY";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("PRESQU'ILE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411CEP";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("PART DIEU")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411ORP";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("SMCI")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411SMC";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("PALATINE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411FOT";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("DUOLOC")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411DUO";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("GAT")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "791005";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (refSelected.toLowerCase().includes("COTRIMO")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411COT";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("AXORENT")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411AXO";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("ANDRIMMO")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411AND";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("EVOTION")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411EVO";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("HUMAN")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411HUM";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("LEHOME")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LEH";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("LOMBARD")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LOM";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("LYON IMMO")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LYI";
-          return newState;
-        });
-      }
-
-      if (refSelected.toLowerCase().includes("VICTOIRE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411VIC";
           return newState;
         });
       }
@@ -1641,7 +1641,7 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
 
       if (
         libelleSelected.toLowerCase().includes("g.s.i") ||
-        libelleSelected.toLowerCase().includes("GSI")
+        libelleSelected.toLowerCase().includes("GSI".toLowerCase())
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -1782,7 +1782,7 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       //////
       if (
         libelleSelected.toLowerCase().includes("metropole") ||
-        libelleSelected.toLowerCase().includes("HORVATH")
+        libelleSelected.toLowerCase().includes("HORVATH".toLowerCase())
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -1890,13 +1890,203 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         });
       }
 
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LODGIS".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOD";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("MA REGIE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411MAR";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("HPI".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("OFYGEST".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411OFY";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("PRESQU'ILE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("PART DIEU".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ORP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("SMCI".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SMC";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("PALATINE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411FOT";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("DUOLOC".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DUO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("GAT".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "791005";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("COTRIMO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411COT";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("AXORENT".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AXO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("ANDRIMMO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AND";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("EVOTION".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411EVO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("HUMAN".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411HUM";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LEHOME".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LEH";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LOMBARD".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOM";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LYON IMMO".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LYI";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("VICTOIRE".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411VIC";
+          return newState;
+        });
+      }
+
       /////////
 
       if (
         libelleSelected.toLowerCase().includes("tresorerie") ||
         libelleSelected.toLowerCase().includes("rer") ||
         libelleSelected.toLowerCase().includes("cpte a cpte") ||
-        libelleSelected.toLowerCase().includes("COMPTE A COMPTE")
+        libelleSelected.toLowerCase().includes("COMPTE A COMPTE".toLowerCase())
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -1998,196 +2188,6 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "445510";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("LODGIS")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LOD";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("MA REGIE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411MAR";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("HPI")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411CEO";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("OFYGEST")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411OFY";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("PRESQU'ILE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411CEP";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("PART DIEU")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411ORP";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("SMCI")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411SMC";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("PALATINE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411FOT";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("DUOLOC")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411DUO";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("GAT")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "791005";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("COTRIMO")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411COT";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("AXORENT")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411AXO";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("ANDRIMMO")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411AND";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("EVOTION")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411EVO";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("HUMAN")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411HUM";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("LEHOME")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LEH";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("LOMBARD")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LOM";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("LYON IMMO")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411LYI";
-          return newState;
-        });
-      }
-
-      //////
-
-      if (libelleSelected.toLowerCase().includes("VICTOIRE")) {
-        setCompteSelectedArray((prevState) => {
-          const newState = [...prevState];
-          newState[index] = "411VIC";
           return newState;
         });
       }
