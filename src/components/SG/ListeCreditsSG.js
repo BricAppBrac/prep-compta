@@ -20,30 +20,39 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
     "408100",
     "4114FG",
     "411ABM",
+    "411AND",
     "411ATI",
+    "411AXO",
     "411BEL",
     "411BON",
     "411BOU",
     "411BTB",
     "411CAP",
     "411CBT",
+    "411CEO",
+    "411CEP",
     "411CES",
     "411CHA",
     "411CI2",
     "411CIT",
     "411CIV",
     "411COG",
+    "411COT",
     "411DAB",
     "411DIF",
+    "411DUO",
     "411ESP",
+    "411EVO",
     "411FOB",
     "411FOL",
     "411FON",
+    "411FOT",
     "411FRA",
     "411GAG",
     "411GES",
     "411GON",
     "411GRA",
+    "411HUM",
     "411IMM",
     "411ITI",
     "411JUL",
@@ -51,11 +60,18 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
     "411JUP",
     "411KOR",
     "411LCB",
+    "411LEH",
+    "411LOD",
+    "411LOM",
+    "411LYI",
+    "411MAR",
     "411MUL",
     "411MUS",
     "411MYH",
     "411NEO",
+    "411OFY",
     "411ORK",
+    "411ORP",
     "411PAR",
     "411PAY",
     "411PIC",
@@ -70,10 +86,12 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
     "411SAG",
     "411SAL",
     "411SIM",
+    "411SMC",
     "411SQA",
     "411SQV",
     "411TAI",
     "411TAR",
+    "411VIC",
     "416000",
     "419800",
     "421001",
@@ -141,6 +159,7 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
     "661110",
     "671000",
     "671200",
+    "791005",
     "791010",
   ];
   let compteOptionsSGJMS = [
@@ -558,6 +577,31 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         refSelected.toLowerCase().includes("jazzpro") ||
         refSelected.toLowerCase().includes("palluat") ||
         refSelected.toLowerCase().includes("sdl") ||
+        refSelected.toLowerCase().includes("lodgis") ||
+        refSelected.toLowerCase().includes("ma regie") ||
+        refSelected.toLowerCase().includes("hpi") ||
+        refSelected.toLowerCase().includes("ofygest") ||
+        refSelected.toLowerCase().includes("presqu'ile") ||
+        refSelected.toLowerCase().includes("part dieu") ||
+        refSelected.toLowerCase().includes("smci") ||
+        refSelected.toLowerCase().includes("palatine") ||
+        refSelected.toLowerCase().includes("duoloc") ||
+        refSelected.toLowerCase().includes("gat") ||
+        refSelected.toLowerCase().includes("cotrimo") ||
+        refSelected.toLowerCase().includes("lyon immo") ||
+        refSelected.toLowerCase().includes("victoire") ||
+        refSelected.toLowerCase().includes("axorent") ||
+        refSelected.toLowerCase().includes("andrimmo") ||
+        refSelected.toLowerCase().includes("evotion") ||
+        refSelected.toLowerCase().includes("human") ||
+        refSelected.toLowerCase().includes("lehome") ||
+        refSelected.toLowerCase().includes("lombard") ||
+        refSelected.toLowerCase().includes("horvath") ||
+        refSelected.toLowerCase().includes("compte a compte") ||
+        refSelected.toLowerCase().includes("picq") ||
+        refSelected.toLowerCase().includes("bonnefoy") ||
+        refSelected.toLowerCase().includes("bourguignon") ||
+        refSelected.toLowerCase().includes("gsi") ||
         refSelected
           .toLowerCase()
           .includes("GRAND LYON IMMOBILIER".toLowerCase())) &&
@@ -624,6 +668,16 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "411PAR";
+          return newState;
+        });
+      }
+
+      /////////
+
+      if (refSelected.toLowerCase().includes("PICQ".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PIC";
           return newState;
         });
       }
@@ -732,7 +786,10 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (refSelected.toLowerCase().includes("g.s.i")) {
+      if (
+        refSelected.toLowerCase().includes("g.s.i") ||
+        refSelected.toLowerCase().includes("GSI")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "411GAG";
@@ -869,7 +926,10 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (refSelected.toLowerCase().includes("metropole")) {
+      if (
+        refSelected.toLowerCase().includes("metropole") ||
+        refSelected.toLowerCase().includes("HORVATH")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "411RLM";
@@ -944,10 +1004,13 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (refSelected.toLowerCase().includes("palluat")) {
+      if (
+        refSelected.toLowerCase().includes("palluat") ||
+        refSelected.toLowerCase().includes("bourguignon")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
-          newState[index] = "411ci2";
+          newState[index] = "411CI2";
           return newState;
         });
       }
@@ -964,12 +1027,22 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         });
       }
 
+      //////
+      if (refSelected.toLowerCase().includes("BONNEFOY")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411BON";
+          return newState;
+        });
+      }
+
       /////////
 
       if (
         refSelected.toLowerCase().includes("tresorerie") ||
         refSelected.toLowerCase().includes("rer") ||
-        refSelected.toLowerCase().includes("cpte a cpte")
+        refSelected.toLowerCase().includes("cpte a cpte") ||
+        refSelected.toLowerCase().includes("COMPTE A COMPTE")
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -1072,6 +1145,180 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "445510";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("LODGIS")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOD";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("MA REGIE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411MAR";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("HPI")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("OFYGEST")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411OFY";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("PRESQU'ILE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("PART DIEU")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ORP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("SMCI")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SMC";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("PALATINE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411FOT";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("DUOLOC")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DUO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("GAT")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "791005";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (refSelected.toLowerCase().includes("COTRIMO")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411COT";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("AXORENT")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AXO";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("ANDRIMMO")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AND";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("EVOTION")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411EVO";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("HUMAN")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411HUM";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("LEHOME")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LEH";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("LOMBARD")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOM";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("LYON IMMO")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LYI";
+          return newState;
+        });
+      }
+
+      if (refSelected.toLowerCase().includes("VICTOIRE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411VIC";
           return newState;
         });
       }
@@ -1186,6 +1433,31 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         libelleSelected.toLowerCase().includes("jazzpro") ||
         libelleSelected.toLowerCase().includes("palluat") ||
         libelleSelected.toLowerCase().includes("sdl") ||
+        libelleSelected.toLowerCase().includes("lodgis") ||
+        libelleSelected.toLowerCase().includes("ma regie") ||
+        libelleSelected.toLowerCase().includes("hpi") ||
+        libelleSelected.toLowerCase().includes("ofygest") ||
+        libelleSelected.toLowerCase().includes("presqu'ile") ||
+        libelleSelected.toLowerCase().includes("part dieu") ||
+        libelleSelected.toLowerCase().includes("smci") ||
+        libelleSelected.toLowerCase().includes("palatine") ||
+        libelleSelected.toLowerCase().includes("duoloc") ||
+        libelleSelected.toLowerCase().includes("gat") ||
+        libelleSelected.toLowerCase().includes("cotrimo") ||
+        libelleSelected.toLowerCase().includes("lyon immo") ||
+        libelleSelected.toLowerCase().includes("victoire") ||
+        libelleSelected.toLowerCase().includes("axorent") ||
+        libelleSelected.toLowerCase().includes("andrimmo") ||
+        libelleSelected.toLowerCase().includes("evotion") ||
+        libelleSelected.toLowerCase().includes("human") ||
+        libelleSelected.toLowerCase().includes("lehome") ||
+        libelleSelected.toLowerCase().includes("lombard") ||
+        libelleSelected.toLowerCase().includes("horvath") ||
+        libelleSelected.toLowerCase().includes("compte a compte") ||
+        libelleSelected.toLowerCase().includes("picq") ||
+        libelleSelected.toLowerCase().includes("bonnefoy") ||
+        libelleSelected.toLowerCase().includes("bourguignon") ||
+        libelleSelected.toLowerCase().includes("gsi") ||
         libelleSelected
           .toLowerCase()
           .includes("GRAND LYON IMMOBILIER".toLowerCase())) &&
@@ -1255,6 +1527,14 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         });
       }
 
+      /////////
+      if (libelleSelected.toLowerCase().includes("PICQ".toLowerCase())) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411PIC";
+          return newState;
+        });
+      }
       /////////
       if (libelleSelected.toLowerCase().includes("paypal")) {
         setCompteSelectedArray((prevState) => {
@@ -1359,7 +1639,10 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
 
       //////
 
-      if (libelleSelected.toLowerCase().includes("g.s.i")) {
+      if (
+        libelleSelected.toLowerCase().includes("g.s.i") ||
+        libelleSelected.toLowerCase().includes("GSI")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "411GAG";
@@ -1497,7 +1780,10 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (libelleSelected.toLowerCase().includes("metropole")) {
+      if (
+        libelleSelected.toLowerCase().includes("metropole") ||
+        libelleSelected.toLowerCase().includes("HORVATH")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
           newState[index] = "411RLM";
@@ -1572,10 +1858,13 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
       }
 
       //////
-      if (libelleSelected.toLowerCase().includes("palluat")) {
+      if (
+        libelleSelected.toLowerCase().includes("palluat") ||
+        libelleSelected.toLowerCase().includes("bourguignon")
+      ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
-          newState[index] = "411ci2";
+          newState[index] = "411CI2";
           return newState;
         });
       }
@@ -1592,12 +1881,22 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
         });
       }
 
+      //////
+      if (libelleSelected.toLowerCase().includes("BONNEFOY")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411BON";
+          return newState;
+        });
+      }
+
       /////////
 
       if (
         libelleSelected.toLowerCase().includes("tresorerie") ||
         libelleSelected.toLowerCase().includes("rer") ||
-        libelleSelected.toLowerCase().includes("cpte a cpte")
+        libelleSelected.toLowerCase().includes("cpte a cpte") ||
+        libelleSelected.toLowerCase().includes("COMPTE A COMPTE")
       ) {
         setCompteSelectedArray((prevState) => {
           const newState = [...prevState];
@@ -1702,6 +2001,197 @@ const ListeCredits = ({ creditsTable, sourceName, sourceType }) => {
           return newState;
         });
       }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LODGIS")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOD";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("MA REGIE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411MAR";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("HPI")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("OFYGEST")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411OFY";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("PRESQU'ILE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411CEP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("PART DIEU")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411ORP";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("SMCI")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411SMC";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("PALATINE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411FOT";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("DUOLOC")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411DUO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("GAT")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "791005";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("COTRIMO")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411COT";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("AXORENT")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AXO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("ANDRIMMO")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411AND";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("EVOTION")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411EVO";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("HUMAN")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411HUM";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LEHOME")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LEH";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LOMBARD")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LOM";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("LYON IMMO")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411LYI";
+          return newState;
+        });
+      }
+
+      //////
+
+      if (libelleSelected.toLowerCase().includes("VICTOIRE")) {
+        setCompteSelectedArray((prevState) => {
+          const newState = [...prevState];
+          newState[index] = "411VIC";
+          return newState;
+        });
+      }
+
       //////
       if (libelleSelected.toLowerCase().includes("interets crediteurs")) {
         setCompteSelectedArray((prevState) => {
